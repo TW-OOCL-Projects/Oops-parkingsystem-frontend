@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import 'antd/dist/antd.css'
 import HomePage from "./compoments/home"
-import employeeMangment from "./compoments/employee-mangment";
-import { BrowserRouter, Route,Link } from "react-router-dom";
+import employeeMangement from "./compoments/employee-mangement";
+import ParkingLotMangement from "./compoments/parkingLot-management";
+import Dashboarsh from "./compoments/dashboarsh";
+import OrderManagement from "./compoments/order-management"
+import ParkingBoy from "./compoments/parking-boy"
+
+import {Route,Link } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd';
 const { Header, Sider, Content } = Layout;
 // import API from "./API/Example"
@@ -41,22 +46,28 @@ class App extends Component {
               </Menu.Item>
             
             <Menu.Item key="2">
-            <Link to="/employeeMangment">
+            <Link to="/parkingLotMangement">
               <Icon type="video-camera" />
               <span>停车场管理</span>
               </Link>
             </Menu.Item>
             <Menu.Item key="4">
+            <Link to="/parkingBoy">
               <Icon type="upload" />
               <span>停车员管理</span>
+              </Link>
             </Menu.Item>
             <Menu.Item key="5">
+            <Link to="/dashboarsh">
               <Icon type="codepen-circle" />
               <span>停车场Dashboarsh</span>
+              </Link>
             </Menu.Item>
             <Menu.Item key="6">
+            <Link to="/orderManagement">
               <Icon type="dropbox" />
               <span>订单管理</span>
+              </Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -71,7 +82,11 @@ class App extends Component {
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280, minWidth: "100%" }}>
               <div>
                 <Route exact path="/home" component={HomePage} />
-                <Route  path="/employeeMangment" component={employeeMangment} />
+                <Route  path="/employeeMangment" component={employeeMangement} />
+                <Route  path="/parkingLotMangement" component={ParkingLotMangement} />
+                <Route  path="/dashboarsh" component={Dashboarsh} />
+                <Route  path="/orderManagement" component={OrderManagement} />
+                <Route  path="/parkingBoy" component={ParkingBoy} />
               </div >
           </Content>
         </Layout>
