@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes'
-// export const getAllItem = (todoList)=>{return  { type: types.ALLLIST,todoList}};
+export const allEmployees = (employeesList)=>{return  { type: types.EMPLOYEELIST,employeesList}};
 
 
 

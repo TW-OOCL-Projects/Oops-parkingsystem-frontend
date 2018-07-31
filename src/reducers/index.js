@@ -1,8 +1,6 @@
-import * as types from '../constants/ActionTypes'
-export default (state, action) => {
-
-    switch (action.type) {
-        default:
-            return state
-    }
-}
+import { combineReducers } from 'redux'
+import employeeReducers from "./employee"
+const parkingLotApp = combineReducers({
+    employeeReducers
+  })
+  export default parkingLotApp
