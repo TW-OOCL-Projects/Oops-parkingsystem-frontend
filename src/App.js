@@ -20,7 +20,7 @@ class App extends Component {
   }
   componentDidMount() {
   }
-
+  
   render() {
     const onClick = function ({ key }) {
       message.info(`Click on item ${key}`);
@@ -42,12 +42,9 @@ class App extends Component {
               type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
-            <div className="Dropdown">
-              <Dropdown overlay={menu} >
-                <Avatar size="large" icon="user" />
+              <Dropdown overlay={menu} className="Dropdown">
+                <Avatar size="large" icon="user"  />
               </Dropdown>
-              <span>admin</span>
-            </div>
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280, minWidth: "100%" }}>
             <div>
