@@ -1,4 +1,4 @@
-const globalUrl = "http://10.222.232.141:8080/"
+const globalUrl = "https://parkinglot-backend.herokuapp.com/"
 export default {
     "start":globalUrl + "start",
     "getHelloWorld":globalUrl + "start/begin",
