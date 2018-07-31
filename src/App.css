@@ -24,3 +24,11 @@
     min-width: 100% ;
     min-height: 100%;
 }
+.Header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Dropdown{
+  margin-right:2rem !important; 
+}
