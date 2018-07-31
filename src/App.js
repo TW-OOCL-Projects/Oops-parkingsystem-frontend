@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Home from "./compoments/home"
 import Login from "./compoments/LoginForm"
-// import API from "./API/Example"
 import { Route } from "react-router-dom";
 class App extends Component {
   constructor(props) {
@@ -21,7 +20,6 @@ class App extends Component {
          <Route path="/home" component={Home} />
       <Route path="/login" component={Login} />
       </div>
-    //  <Home/>
     );
   }
 }
