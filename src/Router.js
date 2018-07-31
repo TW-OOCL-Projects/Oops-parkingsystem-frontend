@@ -16,11 +16,11 @@ class Router extends Component {
             <div>
                 {/* <Route exact path="/login" component={LoginForm} /> */}
                 {/* <Route  path="/home" component={HomePage} /> */}
-                <Route  path="/employeeMangment" component={employeeMangementContainer} />
-                <Route  path="/parkingLotMangement" component={ParkingLotMangement} />
-                <Route  path="/dashboarsh" component={Dashboarsh} />
-                <Route  path="/orderManagement" component={OrderManagement} />
-                <Route  path="/parkingBoy" component={ParkingBoy} />
+                <Route  path="/home/employeeMangment" component={employeeMangementContainer} />
+                <Route  path="/home/parkingLotMangement" component={ParkingLotMangement} />
+                <Route  path="/home/dashboarsh" component={Dashboarsh} />
+                <Route  path="/home/orderManagement" component={OrderManagement} />
+                <Route  path="/home/parkingBoy" component={ParkingBoy} />
             </div>
         );
     }

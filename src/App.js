@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Home from "./compoments/home"
+import Login from "./compoments/LoginForm"
 // import API from "./API/Example"
+import { Route } from "react-router-dom";
 class App extends Component {
   constructor(props) {
     super(props)
@@ -15,7 +17,11 @@ class App extends Component {
 
   render() {
     return (
-     <Home/>
+      <div style={{height:"100%"}}>
+         <Route path="/home" component={Home} />
+      <Route path="/login" component={Login} />
+      </div>
+    //  <Home/>
     );
   }
 }
