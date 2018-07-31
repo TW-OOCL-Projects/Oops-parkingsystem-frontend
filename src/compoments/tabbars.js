@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import { Layout, Menu, Icon } from 'antd';
 const { Sider } = Layout;
 class Tabbars extends Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return (
                 <Sider
