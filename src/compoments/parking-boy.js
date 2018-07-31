@@ -60,7 +60,7 @@ class parkingBoy extends Component {
         return (
             <div>
                 {/* I am parkingBoy page */}
-                <Row type="flex" justify="space-around" align="middle">
+                <Row type="flex" justify="space-around" align="middle" >
                     <Col span={6}>
                         <Button type="primary">新建</Button>
                     </Col>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Divider,Table  } from 'antd'
 
 
 
@@ -38,20 +38,15 @@ class employeeMangment extends Component {
                 <a href="javascript:;">修改</a>
                 <Divider type="vertical" />
                 <a href="javascript:;">冻结</a>
-                {/* <Divider type="vertical" /> */}
-                {/* <a href="javascript:;" className="ant-dropdown-link">
-                  More actions <Icon type="down" />
-                </a> */}
               </span>
             ),
           }];
           
-          const data = this.props.employeesList;
+        const data = this.props.employeesList;
           
         return (
             <div>
-                I am employeeMangment page
-                
+                <Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
             </div>
         );
     }
