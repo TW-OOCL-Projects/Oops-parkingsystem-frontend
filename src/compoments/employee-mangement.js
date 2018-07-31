@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { Table, Divider } from 'antd';
+
+
+
+
 class employeeMangment extends Component {
     constructor(props) {
         super(props);
         this.state = {
         }
     }
-    componentWillMount(){
-        this.props.onGetAllEmployees();
-    }
+
+    
+
     render() {
         const columns = [{
             title: 'id',
@@ -47,7 +50,8 @@ class employeeMangment extends Component {
           
         return (
             <div>
-                <Table columns={columns} dataSource={data} />
+                I am employeeMangment page
+                
             </div>
         );
     }
