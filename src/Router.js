@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import HomePage from "./compoments/home"
-import employeeMangement from "./compoments/employee-mangement";
+import employeeMangementContainer from "./container/employeeMangementContainer";
 import ParkingLotMangement from "./compoments/parkingLot-management";
 import Dashboarsh from "./compoments/dashboarsh";
 import OrderManagement from "./compoments/order-management"
@@ -15,12 +14,13 @@ class Router extends Component {
     render() {
         return (
             <div>
-                <Route exact path="/home" component={HomePage} />
-                <Route  path="/employeeMangment" component={employeeMangement} />
-                <Route  path="/parkingLotMangement" component={ParkingLotMangement} />
-                <Route  path="/dashboarsh" component={Dashboarsh} />
-                <Route  path="/orderManagement" component={OrderManagement} />
-                <Route  path="/parkingBoy" component={ParkingBoy} />
+                {/* <Route exact path="/login" component={LoginForm} /> */}
+                {/* <Route  path="/home" component={HomePage} /> */}
+                <Route exact path="/home/employeeMangment" component={employeeMangementContainer} />
+                <Route  path="/home/parkingLotMangement" component={ParkingLotMangement} />
+                <Route  path="/home/dashboarsh" component={Dashboarsh} />
+                <Route  path="/home/orderManagement" component={OrderManagement} />
+                <Route  path="/home/parkingBoy" component={ParkingBoy} />
             </div>
         );
     }

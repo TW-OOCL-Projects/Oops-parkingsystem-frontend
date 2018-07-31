@@ -1,1 +1,1 @@
-// example: export const ADD = "ADD";
+export const EMPLOYEELIST = "EMPLOYEELIST";
