@@ -12,7 +12,7 @@ const rootEl = document.getElementById('root')
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <App />
+        <App/>
         </BrowserRouter>
     </Provider>,
     rootEl

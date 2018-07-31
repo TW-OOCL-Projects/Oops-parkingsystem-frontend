@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import HomePage from "./compoments/home"
 import employeeMangementContainer from "./container/employeeMangementContainer";
 import ParkingLotMangement from "./compoments/parkingLot-management";
 import Dashboarsh from "./compoments/dashboarsh";
@@ -15,7 +14,8 @@ class Router extends Component {
     render() {
         return (
             <div>
-                <Route exact path="/home" component={HomePage} />
+                {/* <Route exact path="/login" component={LoginForm} /> */}
+                {/* <Route  path="/home" component={HomePage} /> */}
                 <Route  path="/employeeMangment" component={employeeMangementContainer} />
                 <Route  path="/parkingLotMangement" component={ParkingLotMangement} />
                 <Route  path="/dashboarsh" component={Dashboarsh} />
