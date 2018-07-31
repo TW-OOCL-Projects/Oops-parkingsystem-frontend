@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
-
+import { Form, Icon, Input, Button, Checkbox,Row ,Col} from 'antd';
+import '../css/LoginForm.css'
 const FormItem = Form.Item;
 
 class NormalLoginForm extends Component{
@@ -15,7 +15,10 @@ class NormalLoginForm extends Component{
       render() {
         const { getFieldDecorator } = this.props.form;
         return (
-          <Form onSubmit={this.handleSubmit} className="login-form" style={{"max-width": "300px"}}>
+          <Row type="flex" justify="space-around" align="center">
+          <Col span={5}>
+          <Form onSubmit={this.handleSubmit} className="login-form">
+            <h1>请先登录</h1>
             <FormItem>
               {getFieldDecorator('userName', {
                 rules: [{ required: true, message: 'Please input your username!' }],
@@ -42,6 +45,8 @@ class NormalLoginForm extends Component{
               </Button>
             </FormItem>
           </Form>
+          </Col>
+          </Row>
         );
       }
 }
