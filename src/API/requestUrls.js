@@ -1,5 +1,4 @@
-const globalUrl = "https://parkinglot-backend.herokuapp.com/"
+const globalUrl = "https://parkinglot-backend.herokuapp.com/api/v1/"
 export default {
-    "start":globalUrl + "start",
-    "getHelloWorld":globalUrl + "start/begin",
+    "employees":globalUrl + "users",
 }

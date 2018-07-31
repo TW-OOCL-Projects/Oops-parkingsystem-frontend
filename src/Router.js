@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import HomePage from "./compoments/home"
-import employeeMangement from "./compoments/employee-mangement";
+import employeeMangementContainer from "./container/employeeMangementContainer";
 import ParkingLotMangement from "./compoments/parkingLot-management";
 import Dashboarsh from "./compoments/dashboarsh";
 import OrderManagement from "./compoments/order-management"
@@ -16,7 +16,7 @@ class Router extends Component {
         return (
             <div>
                 <Route exact path="/home" component={HomePage} />
-                <Route  path="/employeeMangment" component={employeeMangement} />
+                <Route  path="/employeeMangment" component={employeeMangementContainer} />
                 <Route  path="/parkingLotMangement" component={ParkingLotMangement} />
                 <Route  path="/dashboarsh" component={Dashboarsh} />
                 <Route  path="/orderManagement" component={OrderManagement} />

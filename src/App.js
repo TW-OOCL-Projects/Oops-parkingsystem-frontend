@@ -47,9 +47,7 @@ class App extends Component {
               </Dropdown>
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280, minWidth: "100%" }}>
-            <div>
-              <Router />
-            </div >
+          <Router />
           </Content>
         </Layout>
       </Layout>
