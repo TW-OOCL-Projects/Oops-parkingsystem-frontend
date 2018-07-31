@@ -9,7 +9,9 @@ class employeeMangment extends Component {
         this.state = {
         }
     }
-
+componentWillMount(){
+    this.props.onGetAllEmployees()
+}
     
 
     render() {
