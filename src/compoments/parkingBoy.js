@@ -57,7 +57,7 @@ class parkingBoy extends Component {
             },
         }];
 
-        const data = this.props.parkingBoyList;
+        const data = this.props.parkingboyList;
 
         return (
             <div>

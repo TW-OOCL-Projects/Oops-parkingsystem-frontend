@@ -1,5 +1,5 @@
 import axios from "axios"
-import {allEmployees ,allParkingLots,addEmployee, addParkinglot,allOrders} from '../actions'
+import {allEmployees ,allParkingLots,addEmployee, addParkinglot,allOrders, modifyParkinglot} from '../actions'
 // import {allEmployees ,allParkingLots,addEmployee,allOrders} from '../actions'
 import requestUrls from "./requestUrls"
 export default {
@@ -11,7 +11,7 @@ export default {
         .catch((error) => {
             console.log(error);
         }),
-    "getAllParkingboys": (dispatch) => axios.get(`${requestUrls.employees}/?role=parkingboy`)
+    "getAllParkingboys": (dispatch) => axios.get(`${requestUrls.employees}?role=parkingboy`)
         .then((res) => {
             console.log(res.data);
             dispatch(allEmployees(res.data))
@@ -69,6 +69,7 @@ export default {
         axios.put(`${requestUrls.parkingLots}/${id}`, value)
         .then(res=>{
             console.log(res);
+            dispatch(modifyParkinglot(res.data));
         })
         .catch(error=>{
             console.log(error)
