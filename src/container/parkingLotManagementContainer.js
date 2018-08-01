@@ -20,6 +20,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
         onAddParkinglot:(value)=>{
             Api.addParkinglot(dispatch, value);
+        },
+
+        onModifyParkinglot:(id, value)=>{
+            Api.modifyParkinglot(id, value, dispatch);
         }
     }
 }

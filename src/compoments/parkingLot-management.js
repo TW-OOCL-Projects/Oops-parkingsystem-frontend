@@ -8,26 +8,28 @@ class ParkingLotMangement extends Component {
         this.state = {
             isShowEditForm: false,
             isShowModifyForm: false,
+            modifyId : 0
         }
     }
 
     componentWillMount(){
         this.props.onGetAllParkingLots();
     }
-    showModifyForm = (value) => {
+    showModifyForm = (value, id) => {
         this.setState({
-            isShowModifyForm: value
+            isShowModifyForm: value,
+            modifyId: id,
         })
     }
 
     showEditForm = (value) => {
         this.setState({
-            isShowEditForm: value
+            isShowEditForm: value,
         })
     }
 
-    modifyForm = (id, value) => {
-        this.props.onModifyParkinglot(id, value)
+    modifyForm = (value) => {
+        this.props.onModifyParkinglot(this.state.modifyId, value)
     }
 
     submitForm = (value) => {
@@ -48,7 +50,8 @@ class ParkingLotMangement extends Component {
                 width: 200,
                 render: (parkinglot) => (
                     <span>
-                        <a href="javascript:;" >修改</a>
+                        <a href="javascript:;"
+                            onClick={() => this.showModifyForm(true, parkinglot.id)} >修改</a>
                         <Divider type="vertical" />
                         <a href="javascript:;"
                             onClick={()=>{console.log(parkinglot.id);
@@ -82,6 +85,7 @@ class ParkingLotMangement extends Component {
         const Search = Input.Search;
         return (
             <div>
+                {this.state.isModifyEditForm}
                 <Row type="flex" justify="space-around" align="middle" >
                     <Col span={6}>
                         <Button type="primary" onClick={() => this.showEditForm(true)}>新建</Button>
@@ -105,6 +109,8 @@ class ParkingLotMangement extends Component {
                 </Row>
                 <Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
                 {this.state.isShowEditForm && <Edit dataFormat={dataFormat} showEditForm={(e) => this.showEditForm(e)} submitForm={(e) => this.submitForm(e)} />}
+               
+                { this.state.isShowModifyForm && <Edit dataFormat={dataFormat} showEditForm={(e) => this.showModifyForm(e)} submitForm={(e) => this.modifyForm(e)} />}
             </div>
         );
     }
