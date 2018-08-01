@@ -98,7 +98,10 @@ class employeeMangment extends Component {
                         <Search
                             style={{ width: 400 }}
                             placeholder="input search text"
-                            onSearch={value => console.log(value)}
+                            onSearch={value => this.props.onSearchEmployees({
+                                searchType:this.state.searchType,
+                                searchValue:value
+                            })}
                             enterButton
                         />
                     </div>
