@@ -24,7 +24,7 @@ class App extends Component {
         }
         {
          
-          localStorage.getItem("access_token") && window.location.href.indexOf("/home/employeeMangment")===-1 && < Redirect to="/home/employeeMangment" />
+          localStorage.getItem("access_token") && < Redirect to="/home/employeeMangment" />
         }
       </div>
     );
