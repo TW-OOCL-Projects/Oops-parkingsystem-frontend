@@ -9,9 +9,9 @@ class ParkingLotMangement extends Component {
     render() {
         const columns = [
             // { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
-            { title: 'id', dataIndex: 'id', key: 'id', fixed: 'left' },
-            { title: '名字', dataIndex: 'name', key: '1' },
-            { title: '大小', dataIndex: 'size', key: '2' },
+            { title: 'id', dataIndex: 'id', key:'id',fixed: 'left' },
+            { title: '名字', dataIndex: 'name',key:'name'},
+            { title: '大小', dataIndex: 'size' ,key:'size'},
             {
                 title: '操作',
                 key: 'operation',
@@ -27,17 +27,18 @@ class ParkingLotMangement extends Component {
             },
         ];
         
-        const data = [{
-            key: '1',
-            name: '停车场A',
-            id: 1,
-            size: '20'
-        }, {
-            key: '2',
-            name: '停车场B',
-            id: 2,
-            size: '5'
-        }];
+        // const data = [{
+        //     name: '停车场A',
+        //     id: 1,
+        //     size: '20'
+        // }, {
+        //     name: '停车场B',
+        //     id: 2,
+        //     size: '5'
+        // }];
+
+        const data = this.props.parkinglotsList;
+
 
         const menu = (
             <Menu onClick={handleMenuClick}>
