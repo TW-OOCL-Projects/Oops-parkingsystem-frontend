@@ -4,7 +4,8 @@ import Api from "../API/parkingLotAPI"
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        parkinglotsListInDashboard: state.parkinglotsListInDashboardReducers
+        parkinglotsListInDashboard: state.parkingLotInDashboardReducers
+        
     }
 
 }
