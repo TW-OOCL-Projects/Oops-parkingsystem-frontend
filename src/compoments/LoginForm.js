@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox,Row ,Col} from 'antd';
 import '../css/LoginForm.css'
+import axios from "axios"
 const FormItem = Form.Item;
 
 class NormalLoginForm extends Component{
@@ -8,6 +9,12 @@ class NormalLoginForm extends Component{
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
+
+            if(values.userName==="123"&&values.password==="123"){   
+              alert("登录成功")
+              const {history}=this.props;
+              history.push("/home")
+            }
             console.log('Received values of form: ', values);
           }
         });
