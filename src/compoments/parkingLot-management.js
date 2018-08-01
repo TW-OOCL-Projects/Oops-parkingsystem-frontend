@@ -91,10 +91,10 @@ class ParkingLotMangement extends Component {
                     <Col span={6} align="right">
             <InputGroup compact>
                <Select defaultValue="id" style={{width:"100px"}} onChange={(e)=>this.setSearchType(e)}>
-                    <Option value="name">parking lot name</Option>
-                    <Option value="tel">parking boy tel</Option>
-                    <Option value="sizeBt">size big than</Option>
-                    <Option value="sizeSt">size small than</Option>
+                    <Option value="name">lot name</Option>
+                    <Option value="tel">boy tel</Option>
+                    <Option value="sizeBt">big than</Option>
+                    <Option value="sizeSt">small than</Option>
                 </Select>
             </InputGroup>
             </Col>
