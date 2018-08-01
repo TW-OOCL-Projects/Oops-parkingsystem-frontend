@@ -14,6 +14,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onGetAllParkingboys: () => {
             Api.getAllParkingboys(dispatch)
         },
+        onChangeAccountSataus: (id) => {
+            Api.frozenAccount(dispatch,id)
+        },
     }
 }
 

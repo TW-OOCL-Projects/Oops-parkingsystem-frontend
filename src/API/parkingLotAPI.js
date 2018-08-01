@@ -48,7 +48,7 @@ export default {
     "addEmployee": (dispatch, postData) =>
         axios.post(requestUrls.employees, postData)
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 dispatch(addEmployee(res.data))
             })
             .catch((error) => {
@@ -57,7 +57,7 @@ export default {
     "addParkinglot": (dispatch, postData) =>
         axios.post(requestUrls.parkingLots, postData)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 dispatch(addParkinglot(res.data));
             })
             .catch(error => {
@@ -67,9 +67,9 @@ export default {
     "modifyParkinglot": (id, value, dispatch) =>
         axios.put(`${requestUrls.parkingLots}/${id}`, value)
             .then(res => {
-                console.log("-------"+JSON.stringify(res.data));
+                // console.log("-------"+JSON.stringify(res.data));
                 dispatch(modifyParkinglot(res.data))
-                console.log("-----ok")
+                // console.log("-----ok")
             })
             .catch(error => {
                 //console.log(error)
@@ -77,6 +77,7 @@ export default {
 
     "frozenAccount": (dispatch, id) => axios.patch(requestUrls.employees + "/" + id,{account_status:""})
         .then(res => {
+            console.log("--------")
             dispatch(handleAccountStatus(res.data));
         })
         .catch(error => {

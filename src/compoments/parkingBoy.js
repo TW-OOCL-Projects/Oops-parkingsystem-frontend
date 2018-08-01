@@ -52,7 +52,9 @@ class parkingBoy extends Component {
                         () => this.showEditForm(true, {id,email,name,password,phone})
                     }>修改</a>
                     <Divider type="vertical" />
-                    <a href="javascript:;">{e.account_state=="normal"?"冻结":"解冻"}</a>
+                    <a href="javascript:;" onClick={
+                        () => this.props.onChangeAccountSataus(id)}>
+                        {e.account_status==="normal"?"冻结":"开放"}</a>
                 </span>
             },
         }];
