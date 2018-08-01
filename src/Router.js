@@ -21,8 +21,6 @@ class Router extends Component {
                 <Route path="/home/dashboarsh" component={Dashboarsh} />
                 <Route path="/home/orderManagement" component={OrderManagementContainer} />
                 <Route path="/home/parkingBoy" component={ParkingBoy} />
-                <Redirect to="/home/employeeMangment" />
-
             </div>
         );
     }
