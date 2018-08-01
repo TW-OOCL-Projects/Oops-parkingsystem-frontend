@@ -8,15 +8,17 @@ class employeeMangment extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isShowEditForm: false
+            isShowEditForm: false,
+            dataFormat: {}
         }
     }
     componentWillMount() {
         this.props.onGetAllEmployees()
     }
-    showEditForm = (value) => {
+    showEditForm = (value, dataFormat) => {
         this.setState({
-            isShowEditForm: value
+            isShowEditForm: value,
+            dataFormat: dataFormat
         })
     }
     submitForm = (value) => {
@@ -43,26 +45,29 @@ class employeeMangment extends Component {
         }, {
             title: '操作',
             key: 'action',
-            render: () => (
-                <span >
-                    <a href="javascript:;">修改</a>
+            render: (e) => {
+                const {id,email,name,password,phone} = e
+                return <span >
+                    <a href="javascript:;" onClick={
+                        () => this.showEditForm(true, {id,email,name,password,phone})
+                    }>修改</a>
                     <Divider type="vertical" />
                     <a href="javascript:;">冻结</a>
                 </span>
-            ),
+            },
         }];
 
         const data = this.props.employeesList;
-        const dataFormat = {
-            "name": "",
-            "username": "",
-            "email": "",
-            "phone": ""
-        }
+
         return (
             <div>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
-                    <Button type="primary" onClick={() => this.showEditForm(true)}>新增</Button>
+                    <Button type="primary" onClick={() => this.showEditForm(true, {
+                        "name": "",
+                        "username": "",
+                        "email": "",
+                        "phone": ""
+                    })}>新增</Button>
                     <div style={{ display: "flex" }}>
                         <InputGroup compact>
                             <Select defaultValue="Option1">
@@ -79,7 +84,7 @@ class employeeMangment extends Component {
                     </div>
                 </div>
                 <Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
-                {this.state.isShowEditForm && <Edit dataFormat={dataFormat} showEditForm={(e) => this.showEditForm(e)} submitForm={(e) => this.submitForm(e)} />}
+                {this.state.isShowEditForm && <Edit dataFormat={this.state.dataFormat} showEditForm={(e) => this.showEditForm(e)} submitForm={(e) => this.submitForm(e)} />}
             </div>
         );
     }

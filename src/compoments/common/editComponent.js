@@ -27,21 +27,25 @@ class Edit extends Component {
                 <div className="nav">
                     <Icon type="close-circle-o" className="cancel" onClick={() => this.props.showEditForm(false)} />
                     <Form onSubmit={this.handleSubmit}>
-                        {
-                            Object.keys(this.props.dataFormat).map(i => {
+                    {
+                            Object.keys(this.props.dataFormat).map((i,index) => {
                                 return <FormItem
                                     label={i}
                                     labelCol={{ span: 5 }}
                                     wrapperCol={{ span: 12 }}
+                                    key={index}
                                 >
-                                    {getFieldDecorator(`${i}`, {
-                                        rules: [{ required: true, message: `Please input your ${i}!` }],
+                                    { getFieldDecorator(`${i}`, {
+                                        rules: [{ required: true, message: `Please input your ${i}!` 
+                                        }],
+                                        initialValue:this.props.dataFormat[i]
                                     })(
                                         <Input />
                                     )}
                                 </FormItem>
                             })
                         }
+                        
                         <FormItem
                             wrapperCol={{ span: 12, offset: 5 }}
                         >
