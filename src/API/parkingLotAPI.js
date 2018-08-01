@@ -68,6 +68,7 @@ export default {
         axios.put(`${requestUrls.parkingLots}/${id}`, value)
             .then(res => {
                 console.log(res);
+                dispatch(modifyParkinglot(res.data))
             })
             .catch(error => {
                 console.log(error)

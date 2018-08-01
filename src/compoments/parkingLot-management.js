@@ -8,17 +8,21 @@ class ParkingLotMangement extends Component {
         this.state = {
             isShowEditForm: false,
             isShowModifyForm: false,
-            modifyId : 0
+            dataFormat:{},
+            modifyId : 0,
+            
         }
     }
 
     componentWillMount(){
         this.props.onGetAllParkingLots();
     }
-    showModifyForm = (value, id) => {
+    showModifyForm = (value, id, name, size) => {
+        console.log(value)
         this.setState({
             isShowModifyForm: value,
             modifyId: id,
+            dataFormat: {name, size}
         })
     }
 
@@ -51,7 +55,7 @@ class ParkingLotMangement extends Component {
                 render: (parkinglot) => (
                     <span>
                         <a href="javascript:;"
-                            onClick={() => this.showModifyForm(true, parkinglot.id)} >修改</a>
+                            onClick={() => this.showModifyForm(true, parkinglot.id, parkinglot.name, parkinglot.size)} >修改</a>
                         <Divider type="vertical" />
                         <a href="javascript:;"
                             onClick={()=>{console.log(parkinglot.id);
@@ -109,8 +113,7 @@ class ParkingLotMangement extends Component {
                 </Row>
                 <Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
                 {this.state.isShowEditForm && <Edit dataFormat={dataFormat} showEditForm={(e) => this.showEditForm(e)} submitForm={(e) => this.submitForm(e)} />}
-               
-                { this.state.isShowModifyForm && <Edit dataFormat={dataFormat} showEditForm={(e) => this.showModifyForm(e)} submitForm={(e) => this.modifyForm(e)} />}
+                { this.state.isShowModifyForm && <Edit dataFormat={this.state.dataFormat} showEditForm={(e) => this.showModifyForm(e)} submitForm={(e) => this.modifyForm(e)} />}
             </div>
         );
     }

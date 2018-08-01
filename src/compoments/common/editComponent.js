@@ -21,6 +21,7 @@ class Edit extends Component {
     }
 
     render() {
+        console.log(this.props.dataFormat)
         const { getFieldDecorator } = this.props.form;
         return (
             <div className="edit">
