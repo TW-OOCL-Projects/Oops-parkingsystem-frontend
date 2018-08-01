@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox,Row ,Col} from 'antd';
+import { Form, Icon, Input, Button, Checkbox,Row ,Col,message} from 'antd';
 import '../css/LoginForm.css'
 import axios from "axios"
 import requestUrls from "../API/requestUrls"
@@ -19,7 +19,7 @@ class NormalLoginForm extends Component{
                     console.log(error);
                 })
             if(values.userName==="123"&&values.password==="123"){   
-              alert("登录成功")
+              message.info('登录成功');
               localStorage.setItem("access_token", "token123");
               console.log(localStorage.getItem("access_token"))
               const {history}=this.props;

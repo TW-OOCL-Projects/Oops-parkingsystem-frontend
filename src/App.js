@@ -20,10 +20,11 @@ class App extends Component {
         <Route path="/home" component={Home} />
         <Route strict path="/login" component={Login} />
         {
-          !localStorage.getItem("access_token") && < Redirect to="/login" />
+          !localStorage.getItem("access_token") && window.location.href.indexOf("/login")===-1&& < Redirect to="/login" />
         }
         {
-          localStorage.getItem("access_token") && < Redirect to="/home/employeeMangment" />
+         
+          localStorage.getItem("access_token") && window.location.href.indexOf("/home/employeeMangment")===-1 && < Redirect to="/home/employeeMangment" />
         }
       </div>
     );
