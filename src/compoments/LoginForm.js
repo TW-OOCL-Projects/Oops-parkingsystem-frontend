@@ -20,6 +20,8 @@ class NormalLoginForm extends Component{
                 })
             if(values.userName==="123"&&values.password==="123"){   
               alert("登录成功")
+              localStorage.setItem("access_token", "token123");
+              console.log(localStorage.getItem("access_token"))
               const {history}=this.props;
               history.push("/home/employeeMangment")
             }
