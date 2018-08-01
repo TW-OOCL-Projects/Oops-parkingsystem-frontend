@@ -1,14 +1,37 @@
 import React, { Component } from 'react';
 import { Table, Icon, Divider, Button, Menu, Dropdown, message, Input, Row, Col } from 'antd'
+import Edit from "./common/editComponent"
+
 class ParkingLotMangement extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isShowEditForm: false,
+            isShowModifyForm: false,
         }
     }
 
     componentWillMount(){
         this.props.onGetAllParkingLots();
+    }
+    showModifyForm = (value) => {
+        this.setState({
+            isShowModifyForm: value
+        })
+    }
+
+    showEditForm = (value) => {
+        this.setState({
+            isShowEditForm: value
+        })
+    }
+
+    modifyForm = (id, value) => {
+        this.props.onModifyParkinglot(id, value)
+    }
+
+    submitForm = (value) => {
+        this.props.onAddParkinglot(value)
     }
     render() {
 
@@ -27,7 +50,7 @@ class ParkingLotMangement extends Component {
                     <span>
                         <a href="javascript:;" >修改</a>
                         <Divider type="vertical" />
-                        <a href="javascript:;" 
+                        <a href="javascript:;"
                             onClick={()=>{console.log(parkinglot.id);
                                     this.props.changeStatus(parkinglot.id)}}>
                             {parkinglot.status==="open"?"注销":"开放"}
@@ -36,16 +59,6 @@ class ParkingLotMangement extends Component {
                 ),
             },
         ];
-        
-        // const data = [{
-        //     name: '停车场A',
-        //     id: 1,
-        //     size: '20'
-        // }, {
-        //     name: '停车场B',
-        //     id: 2,
-        //     size: '5'
-        // }];
 
 
 
@@ -56,6 +69,12 @@ class ParkingLotMangement extends Component {
                 <Menu.Item key="3">3rd item</Menu.Item>
             </Menu>
         );
+
+        const dataFormat = {
+            "name":"",
+            "size":"",
+        }
+
         function handleMenuClick(e) {
             message.info('Click on menu item.');
             console.log('click', e);
@@ -65,7 +84,7 @@ class ParkingLotMangement extends Component {
             <div>
                 <Row type="flex" justify="space-around" align="middle" >
                     <Col span={6}>
-                        <Button type="primary">新建</Button>
+                        <Button type="primary" onClick={() => this.showEditForm(true)}>新建</Button>
                     </Col>
                     <Col span={6}></Col>
                     <Col span={6} align="right">
@@ -85,6 +104,7 @@ class ParkingLotMangement extends Component {
                     </Col>
                 </Row>
                 <Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
+                {this.state.isShowEditForm && <Edit dataFormat={dataFormat} showEditForm={(e) => this.showEditForm(e)} submitForm={(e) => this.submitForm(e)} />}
             </div>
         );
     }
