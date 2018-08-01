@@ -1,15 +1,73 @@
 import React, { Component } from 'react';
-
+import { Collapse } from 'antd';
+import { Progress ,Row,Col} from 'antd';
+const Panel = Collapse.Panel;
 class Dashboarsh extends Component {
     constructor(props) {
         super(props);
         this.state = {
         }
     }
+    
     render() {
         return (
-            <div>
-                I am Dashboarsh page
+            <div >
+             <Row type="flex" justify="space-between">
+                 <Col span={8}>   
+                    <div style={{"width":"250px"}}>
+                        <Collapse defaultActiveKey={['1']} >
+                        <Panel showArrow={false} header="停车场A" key="1">  
+                        <Row type="flex" justify="space-around" align="middle">
+                            <Progress type="circle" percent={30} width={80} format={percent=>`${percent/10} /10`} />
+                            <span>停车员：张三</span>   
+                        </Row>
+                        <p style={{"margin-left":"20px"}}>停车场情况</p>
+                        </Panel>
+                        </Collapse>   
+                    </div>
+                </Col>
+                    <Col span={8}>
+                        <div style={{"width":"250px"}}>
+                        <Collapse defaultActiveKey={['1']} >
+                        <Panel showArrow={false} header="停车场A" key="1">  
+                        <Row type="flex" justify="space-around" align="middle">
+                            <Progress type="circle" percent={30} width={80} format={percent=>`${percent/10} /10`} />
+                            <span>停车员：张三</span>   
+                        </Row>
+                        <p style={{"margin-left":"20px"}}>停车场情况</p>
+                        </Panel>
+                        </Collapse>   
+                        </div>
+                    </Col>
+                    <Col span={8}>
+                        <div style={{"width":"250px"}}>
+                        <Collapse defaultActiveKey={['1']} >
+                        <Panel showArrow={false} header="停车场A" key="1">  
+                        <Row type="flex" justify="space-around" align="middle">
+                            <Progress type="circle" percent={30} width={80} format={percent=>`${percent/10} /10`} />
+                            <span>停车员：张三</span>   
+                        </Row>
+                        <p style={{"margin-left":"20px"}}>停车场情况</p>
+                        </Panel>
+                        </Collapse>   
+                        </div>
+                    </Col>
+
+                    <Col span={8}>
+                        <div style={{"width":"250px"}}>
+                        <Collapse defaultActiveKey={['1']} >
+                        <Panel showArrow={false} header="停车场A" key="1">  
+                        <Row type="flex" justify="space-around" align="middle">
+                            <Progress type="circle" percent={30} width={80} format={percent=>`${percent/10} /10`} />
+                            <span>停车员：张三</span>   
+                        </Row>
+                        <p style={{"margin-left":"20px"}}>停车场情况</p>
+                        </Panel>
+                        </Collapse>   
+                        </div>
+                    </Col>
+
+            </Row>
             </div>
         );
     }
