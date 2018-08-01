@@ -16,7 +16,8 @@ class employeeMangment extends Component {
     componentWillMount() {
         this.props.onGetAllEmployees()
     }
-    showEditForm = (value, dataFormat, key) => {
+    showEdit
+    Form = (value, dataFormat, key) => {
         this.setState({
             isShowEditForm: value,
             dataFormat: dataFormat,

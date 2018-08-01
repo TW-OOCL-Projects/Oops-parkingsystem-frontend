@@ -9,7 +9,7 @@ class parkingBoy extends Component {
         super(props);
         this.state = {
             isShowEditForm: false,
-            dataFormat: {}
+            dataFormat: {},
         }
     }
     componentWillMount() {
@@ -18,11 +18,11 @@ class parkingBoy extends Component {
     showEditForm = (value, dataFormat) => {
         this.setState({
             isShowEditForm: value,
-            dataFormat: dataFormat
+            dataFormat,
         })
     }
     submitForm = (value) => {
-        this.props.onAddEmployee(value)
+        this.props.onUpdateEmployee(value)
     }
     render() {
         const columns = [{
