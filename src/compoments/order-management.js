@@ -23,9 +23,9 @@ class orderManagement extends Component {
                 dataIndex: 'operation',
                 fixed: 'right',
                 width: 200,
-                render: () => (
+                render: (e) => (
                     <span>
-                        <a href="javascript:;"></a>
+                        <a href="javascript:;">{e}</a>
                     </span>
                 ),
             },
