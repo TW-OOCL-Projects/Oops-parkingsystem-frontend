@@ -11,6 +11,8 @@ class ParkingLotMangement extends Component {
         this.props.onGetAllParkingLots();
     }
     render() {
+
+        const data = this.props.parkinglotsList;
         const columns = [
             // { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
             { title: 'id', dataIndex: 'id', key:'id',fixed: 'left' },
@@ -21,11 +23,15 @@ class ParkingLotMangement extends Component {
                 key: 'operation',
                 fixed: 'right',
                 width: 200,
-                render: () => (
+                render: (parkinglot) => (
                     <span>
-                        <a href="javascript:;">修改</a>
+                        <a href="javascript:;" >修改</a>
                         <Divider type="vertical" />
-                        <a href="javascript:;">注销</a>
+                        <a href="javascript:;" 
+                            onClick={()=>{console.log(parkinglot.id);
+                                    this.props.changeStatus(parkinglot.id)}}>
+                            {parkinglot.status==="open"?"注销":"开放"}
+                        </a>
                     </span>
                 ),
             },
@@ -41,7 +47,6 @@ class ParkingLotMangement extends Component {
         //     size: '5'
         // }];
 
-        const data = this.props.parkinglotsList;
 
 
         const menu = (

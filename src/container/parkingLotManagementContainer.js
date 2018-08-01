@@ -12,6 +12,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onGetAllParkingLots:()=>{
             Api.getAllParkingLots(dispatch)
+        },
+
+        changeStatus:(id)=>{
+            Api.changeParkingLotStatus(id, dispatch)
         }
     }
 }
