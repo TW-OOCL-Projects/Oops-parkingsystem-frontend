@@ -16,6 +16,17 @@ export default (state=[], action) => {
             newState.find(i=>i.id == action.employeeItem.id).account_status = action.employeeItem.account_status
             return newState;
         }
+        case types.UPDATEEMPLOYEE:{
+            console.log(action.employeeItem)
+            let newState = [...state]
+            return newState.map(i=>{
+                if(i.id === action.employeeItem.id){
+                    return action.employeeItem
+                } else {
+                    return i
+                }
+            }) 
+        }
         default:
             return state
     }

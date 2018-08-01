@@ -27,7 +27,7 @@ class employeeMangment extends Component {
         if (this.state.isModifyAdd) {
             this.props.onAddEmployee(value)
         } else{
-            this.props.onAddEmployee(value)
+            this.props.onUpdateEmployee(value)
         }
     }
 

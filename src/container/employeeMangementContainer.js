@@ -19,7 +19,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onChangeAccountSataus: (id) => {
             Api.frozenAccount(dispatch,id)
         },
-        
+        onUpdateEmployee: (employee) => {
+            Api.updateEmployee(dispatch,employee)
+        },
     }
 }
 

@@ -2,6 +2,8 @@
 export const EMPLOYEELIST = "EMPLOYEELIST"
 export const ADDEMPLOYEE = "ADDEMPLOYEE"
 export const ACCOUNTSTATUS = "ACCOUNTSTATUS"
+export const UPDATEEMPLOYEE = "UPDATEEMPLOYEE"
+
 
 // parkinglot
 

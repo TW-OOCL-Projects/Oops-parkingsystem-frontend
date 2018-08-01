@@ -1,5 +1,5 @@
 import axios from "axios"
-import {allEmployees ,allParkingLots,addEmployee, addParkinglot,allOrders, modifyParkinglot,handleAccountStatus,allParkingLotsInDashboard} from '../actions'
+import { allEmployees, allParkingLots, addEmployee, addParkinglot, allOrders, modifyParkinglot, handleAccountStatus, allParkingLotsInDashboard,updateEmployee } from '../actions'
 // import {allEmployees ,allParkingLots,addEmployee,allOrders} from '../actions'
 import requestUrls from "./requestUrls"
 export default {
@@ -75,7 +75,7 @@ export default {
                 //console.log(error)
             }),
 
-    "frozenAccount": (dispatch, id) => axios.patch(requestUrls.employees + "/" + id,{account_status:""})
+    "frozenAccount": (dispatch, id) => axios.patch(requestUrls.employees + "/" + id, { account_status: "" })
         .then(res => {
             console.log("--------")
             dispatch(handleAccountStatus(res.data));
@@ -92,10 +92,18 @@ export default {
         .catch((error) => {
             console.log(error);
         }),
-        "getAllParkingLotsInDashboard": (dispatch) => axios.get(requestUrls.parkingLotsDashboard)
+    "getAllParkingLotsInDashboard": (dispatch) => axios.get(requestUrls.parkingLotsDashboard)
         .then((res) => {
             console.log(res.data);
             dispatch(allParkingLotsInDashboard(res.data))
+        })
+        .catch((error) => {
+            console.log(error);
+        }),
+    "updateEmployee": (dispatch,employee) => axios.patch(requestUrls.employees + "/" + employee.id,employee)
+        .then((res) => {
+            console.log(res.data);
+            dispatch(updateEmployee(res.data))
         })
         .catch((error) => {
             console.log(error);
