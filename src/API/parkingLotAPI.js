@@ -11,6 +11,14 @@ export default {
         .catch((error) => {
             console.log(error);
         }),
+    "getAllParkingboys": (dispatch) => axios.get(`${requestUrls.employees}/?role=parkingboy`)
+        .then((res) => {
+            console.log(res.data);
+            dispatch(allEmployees(res.data))
+        })
+        .catch((error) => {
+            console.log(error);
+        }),
     "getAllParkingLots": (dispatch) => axios.get(requestUrls.parkingLots)
         .then((res) => {
             console.log(res.data);
@@ -38,7 +46,8 @@ export default {
             .catch(error=>{
                 console.log(error)
             }),
-    "addEmployee": (dispatch,postData) => axios.post(requestUrls.employees,postData)
+    "addEmployee": (dispatch,postData) => 
+    axios.post(requestUrls.employees,postData)
         .then((res) => {
             console.log(res.data);
             dispatch(addEmployee(res.data))
@@ -46,7 +55,8 @@ export default {
         .catch((error) => {
             console.log(error);
         }),
-    "addParkinglot": (dispatch, postData) => axios.post(requestUrls.parkingLots, postData)
+    "addParkinglot": (dispatch, postData) => 
+    axios.post(requestUrls.parkingLots, postData)
         .then(res=>{
             console.log(res.data);
             dispatch(addParkinglot(res.data));

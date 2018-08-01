@@ -3,7 +3,7 @@ import employeeMangementContainer from "./container/employeeMangementContainer";
 import ParkingLotMangement from "./compoments/parkingLot-management";
 import Dashboarsh from "./compoments/dashboarsh";
 import OrderManagement from "./compoments/order-management"
-import ParkingBoy from "./compoments/parking-boy"
+import ParkingBoy from "./container/parkingBoyContainer"
 import {Route } from "react-router-dom";
 import parkingLotManagementContainer from './container/parkingLotManagementContainer';
 import OrderManagementContainer from './container/OrderManagementContainer';
