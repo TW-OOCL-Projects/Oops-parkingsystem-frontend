@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Collapse } from 'antd';
-import { Progress ,Row,Col} from 'antd';
+import { Progress ,Row,Col,Pagination } from 'antd';
 const Panel = Collapse.Panel;
 class Dashboarsh extends Component {
     constructor(props) {
@@ -8,12 +8,14 @@ class Dashboarsh extends Component {
         this.state = {
         }
     }
-    
+    componentWillMount() {
+        this.props.onGetAllParkingLotsInDashboard()
+    }
     render() {
         return (
             <div >
              <Row type="flex" justify="space-between">
-                 <Col span={8}>   
+                 <Col span={8} style={{"margin-bottom":"15px"}}>   
                     <div style={{"width":"250px"}}>
                         <Collapse defaultActiveKey={['1']} >
                         <Panel showArrow={false} header="停车场A" key="1">  
@@ -67,7 +69,13 @@ class Dashboarsh extends Component {
                         </div>
                     </Col>
 
+                   
+
+                    
+
+                    
             </Row>
+            {/* <Pagination defaultCurrent={1} total={50} /> */}
             </div>
         );
     }

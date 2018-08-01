@@ -13,3 +13,6 @@ export const modifyParkinglot = (parkinglot)=>{return {type: types.MODIFYPARKING
 // order
 export const allOrders = (ordersList) => {return {type:types.ORDERSLIST,ordersList}}
 
+
+// parkinglot in dashboard
+export const allParkingLotsInDashboard=(parkinglotsListInDashboard)=>{return {type:types.PARKINGLOTLISTINDASHBOARD,parkinglotsListInDashboard}}

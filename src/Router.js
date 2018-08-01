@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import employeeMangementContainer from "./container/employeeMangementContainer";
 import ParkingLotMangement from "./compoments/parkingLot-management";
-import Dashboarsh from "./compoments/dashboarsh";
+import Dashboarsh from "./container/dashboarshContainer";
 import OrderManagement from "./compoments/order-management"
 import ParkingBoy from "./container/parkingBoyContainer"
 import {Route } from "react-router-dom";

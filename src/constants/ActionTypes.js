@@ -11,3 +11,7 @@ export const MODIFYPARKINGLOT = "MODIFYPARKINGLOT"
 
 // order
 export const ORDERSLIST = "ORDERSLIST"
+
+
+//parkinglot in dashboard
+export const PARKINGLOTLISTINDASHBOARD="PARKINGLOTLISTINDASHBOARD"

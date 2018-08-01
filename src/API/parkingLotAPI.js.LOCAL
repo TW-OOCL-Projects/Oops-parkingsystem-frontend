@@ -1,5 +1,5 @@
 import axios from "axios"
-import {allEmployees ,allParkingLots,addEmployee, addParkinglot,allOrders, modifyParkinglot,handleAccountStatus,allParkingLotsInDashboard} from '../actions'
+import {allEmployees ,allParkingLots,addEmployee, addParkinglot,allOrders, modifyParkinglot,handleAccountStatus} from '../actions'
 // import {allEmployees ,allParkingLots,addEmployee,allOrders} from '../actions'
 import requestUrls from "./requestUrls"
 export default {
@@ -87,14 +87,6 @@ export default {
         .then((res) => {
             console.log(res.data);
             dispatch(allOrders(res.data))
-        })
-        .catch((error) => {
-            console.log(error);
-        }),
-        "getAllParkingLotsInDashboard": (dispatch) => axios.get(requestUrls.parkingLotsDashboard)
-        .then((res) => {
-            console.log(res.data);
-            dispatch(allParkingLotsInDashboard(res.data))
         })
         .catch((error) => {
             console.log(error);
