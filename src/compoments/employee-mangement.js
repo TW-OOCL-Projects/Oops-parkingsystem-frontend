@@ -11,15 +11,15 @@ class employeeMangment extends Component {
             isShowEditForm: false,
             dataFormat: {},
             isModifyAdd: true,
-            searchType:"id"
+            searchType: "id"
         }
     }
     componentWillMount() {
         this.props.onGetAllEmployees()
     }
-    setSeachType=(e)=>{
+    setSeachType = (e) => {
         this.setState({
-            searchType:e
+            searchType: e
         })
     }
 
@@ -33,7 +33,7 @@ class employeeMangment extends Component {
     submitForm = (value) => {
         if (this.state.isModifyAdd) {
             this.props.onAddEmployee(value)
-        } else{
+        } else {
             this.props.onUpdateEmployee(value)
         }
     }
@@ -68,10 +68,15 @@ class employeeMangment extends Component {
                     <a href="javascript:;" onClick={
                         () => this.showEditForm(true, { id, email, name, password, phone, username }, false)
                     }>修改</a>
-                    <Divider type="vertical" />
-                    <a href="javascript:;" onClick={
-                        () => this.updateAccountStatus( id)
-                    }>{e.account_status==="normal"?"冻结":"开放"}</a>
+                    {id !== 1 &&
+                        <span>
+                            <Divider type="vertical" />
+                            <a href="javascript:;" onClick={
+                                () => this.updateAccountStatus(id)
+                            }>{e.account_status === "normal" ? "冻结" : "开放"}</a>
+                        </span>
+                    }
+
                 </span>
             },
         }];
@@ -89,7 +94,7 @@ class employeeMangment extends Component {
                     }, true)}>新增</Button>
                     <div style={{ display: "flex" }}>
                         <InputGroup compact>
-                            <Select defaultValue="id" style={{width:"100px"}} onChange={this.setSeachType}>
+                            <Select defaultValue="id" style={{ width: "100px" }} onChange={this.setSeachType}>
                                 <Option value="id">id</Option>
                                 <Option value="name">姓名</Option>
                                 <Option value="email">email</Option>
@@ -100,8 +105,8 @@ class employeeMangment extends Component {
                             style={{ width: 400 }}
                             placeholder="input search text"
                             onSearch={value => this.props.onSearchEmployees({
-                                searchType:this.state.searchType,
-                                searchValue:value
+                                searchType: this.state.searchType,
+                                searchValue: value
                             })}
                             enterButton
                         />
