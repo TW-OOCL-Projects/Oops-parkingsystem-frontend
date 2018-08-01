@@ -10,14 +10,14 @@ class NormalLoginForm extends Component{
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
-            let postData={"userName":values.userName,"password":values.password}
-            axios.post(requestUrls,postData)//.employees
-                  .then((res) => {
-                      alert(res.data)
-                })
-                .catch((error) => {
-                    console.log(error);
-                })
+            // let postData={"userName":values.userName,"password":values.password}
+            // axios.post(requestUrls,postData)//.employees
+            //       .then((res) => {
+            //           alert(res.data)
+            //     })
+            //     .catch((error) => {
+            //         console.log(error);
+            //     })
             if(values.userName==="123"&&values.password==="123"){   
               message.info('登录成功');
               localStorage.setItem("access_token", "token123");

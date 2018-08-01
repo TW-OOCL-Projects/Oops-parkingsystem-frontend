@@ -101,9 +101,9 @@ export default {
         .catch((error) => {
             console.log(error);
         }),
-    "searchEmployees": (dispatch, searchValue) => axios.post(requestUrls.employees+"/search", searchValue)
+    "searchEmployees": (dispatch, searchValue) => axios.get(requestUrls.employees+"/search?"+searchValue.searchType+"="+searchValue.searchValue+"")
         .then((res) => {
-            // dispatch(actions.searchEmployees(res.data))
+            dispatch(actions.searchEmployees(res.data))
         })
         .catch((error) => {
             console.log(error);
