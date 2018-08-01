@@ -1,6 +1,5 @@
 import axios from "axios"
 import * as actions from '../actions'
-// import {allEmployees ,allParkingLots,addEmployee,allOrders} from '../actions'
 import requestUrls from "./requestUrls"
 export default {
     "getAllEmployees": (dispatch) => axios.get(requestUrls.employees)
@@ -12,7 +11,6 @@ export default {
         }),
     "getAllParkingboys": (dispatch) => axios.get(`${requestUrls.employees}?role=parkingboy`)
         .then((res) => {
-            console.log(res.data);
             dispatch(actions.allEmployees(res.data))
         })
         .catch((error) => {
@@ -20,7 +18,6 @@ export default {
         }),
     "getAllParkingLots": (dispatch) => axios.get(requestUrls.parkingLots)
         .then((res) => {
-            console.log(res.data);
             dispatch(actions.allParkingLots(res.data))
         })
         .catch((error) => {
@@ -77,7 +74,6 @@ export default {
 
     "frozenAccount": (dispatch, id) => axios.patch(requestUrls.employees + "/" + id, { account_status: "" })
         .then(res => {
-            console.log("--------")
             dispatch(actions.handleAccountStatus(res.data));
         })
         .catch(error => {
@@ -86,7 +82,6 @@ export default {
 
     "getAllOrders": (dispatch) => axios.get(requestUrls.orders)
         .then((res) => {
-            console.log(res.data);
             dispatch(actions.allOrders(res.data))
         })
         .catch((error) => {
@@ -94,7 +89,6 @@ export default {
         }),
     "getAllParkingLotsInDashboard": (dispatch) => axios.get(requestUrls.parkingLotsDashboard)
         .then((res) => {
-            console.log(res.data);
             dispatch(actions.allParkingLotsInDashboard(res.data))
         })
         .catch((error) => {
@@ -102,7 +96,6 @@ export default {
         }),
     "updateEmployee": (dispatch, employee) => axios.patch(requestUrls.employees + "/" + employee.id, employee)
         .then((res) => {
-            console.log(res.data);
             dispatch(actions.updateEmployee(res.data))
         })
         .catch((error) => {
@@ -110,8 +103,7 @@ export default {
         }),
     "searchEmployees": (dispatch, searchValue) => axios.post(requestUrls.employees+"/search", searchValue)
         .then((res) => {
-            console.log(res.data);
-            dispatch(actions.searchEmployees(res.data))
+            // dispatch(actions.searchEmployees(res.data))
         })
         .catch((error) => {
             console.log(error);
