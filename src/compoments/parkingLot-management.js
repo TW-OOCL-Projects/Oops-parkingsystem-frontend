@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { Table, Icon, Divider, Button, Menu, Dropdown, message, Input, Row, Col } from 'antd'
+import { Table, Icon, Divider, Button, Menu, Dropdown, message, Input, Row, Col, Select } from 'antd'
 import Edit from "./common/editComponent"
+
+const InputGroup = Input.Group;
+const Option = Select.Option;
+const Search = Input.Search;
 
 class ParkingLotMangement extends Component {
     constructor(props) {
@@ -10,7 +14,14 @@ class ParkingLotMangement extends Component {
             isShowModifyForm: false,
             dataFormat:{},
             modifyId : 0,
+            searchType: "",
         }
+    }
+
+    setSearchType=(e)=>{
+        this.setState({
+            searchType: e,
+        })
     }
 
     componentWillMount(){
@@ -66,27 +77,10 @@ class ParkingLotMangement extends Component {
             },
         ];
 
-
-
-        const menu = (
-            <Menu onClick={handleMenuClick}>
-                <Menu.Item key="1">name</Menu.Item>
-                <Menu.Item key="2">parking boy tel</Menu.Item>
-                <Menu.Item key="3">size bigger than</Menu.Item>
-                <Menu.Item key="4">size smaller than</Menu.Item>
-            </Menu>
-        );
-
         const dataFormat = {
             "name":"",
             "size":"",
         }
-
-        function handleMenuClick(e) {
-            message.info('Click on menu item.');
-            console.log('click', e.key);
-        }
-        const Search = Input.Search;
         return (
             <div>
                 <Row type="flex" justify="space-around" align="middle" >
@@ -95,17 +89,21 @@ class ParkingLotMangement extends Component {
                     </Col>
                     <Col span={6}></Col>
                     <Col span={6} align="right">
-                        <Dropdown overlay={menu}>
-                            <Button style={{ marginLeft: 20 }}>
-                                选项一 <Icon type="down" />
-                            </Button>
-                        </Dropdown></Col>
+            <InputGroup compact>
+               <Select defaultValue="id" style={{width:"100px"}} onChange={(e)=>this.setSearchType(e)}>
+                    <Option value="name">parking lot name</Option>
+                    <Option value="tel">parking boy tel</Option>
+                    <Option value="sizeBt">size big than</Option>
+                    <Option value="sizeSt">size small than</Option>
+                </Select>
+            </InputGroup>
+            </Col>
                     <Col span={6}>
                         <Search
                             placeholder="示例文字"
                             enterButton="Search"
                             size="large"
-                            onSearch={value => console.log(value)}
+                            onSearch={value => this.props.onSearch(value, this.state.searchType)}
                             style={{ width: 400 }}
                         />
                     </Col>

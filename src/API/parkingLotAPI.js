@@ -109,4 +109,16 @@ export default {
             console.log(error);
         }),
 
+    "searchParkinglot":(value, searchType, dispatch) => {
+        let search = `?${searchType}=${value}`;
+        axios.get(requestUrls.parkingLotCombineSearch+search)
+        .then(res=>{
+            console.log(res);
+            dispatch(actions.allParkingLots(res.data));
+        })
+        .catch(error=>{
+            console.log(error);
+        });
+    },
+
 }
