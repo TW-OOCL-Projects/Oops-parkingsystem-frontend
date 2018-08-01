@@ -1,5 +1,6 @@
 import axios from "axios"
-import {allEmployees ,allParkingLots,addEmployee, addParkinglot} from '../actions'
+import {allEmployees ,allParkingLots,addEmployee, addParkinglot,allOrders} from '../actions'
+// import {allEmployees ,allParkingLots,addEmployee,allOrders} from '../actions'
 import requestUrls from "./requestUrls"
 export default {
     "getAllEmployees": (dispatch) => axios.get(requestUrls.employees)
@@ -52,6 +53,14 @@ export default {
         })
         .catch(error=>{
             console.log(error);
-        })
+        }),
 
+    "getAllOrders": (dispatch) => axios.get(requestUrls.orders)
+        .then((res) => {
+            console.log(res.data);
+            dispatch(allOrders(res.data))
+        })
+        .catch((error) => {
+            console.log(error);
+        }),
 }

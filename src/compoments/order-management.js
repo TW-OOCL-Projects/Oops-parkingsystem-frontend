@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Table, Icon, Divider, Button, Menu, Dropdown, message, Input, Row, Col } from 'antd'
-class orderManagemen extends Component {
+class orderManagement extends Component {
     constructor(props) {
         super(props);
         this.state = {
         }
     }
+    componentWillMount(){
+        this.props.onGetAllOrders();
+    }
+
     render() {
         const columns = [
             // { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
@@ -27,19 +31,7 @@ class orderManagemen extends Component {
             },
         ];
 
-        const data = [{
-            carId: '粤A123456',
-            id: 1,
-            type: '取车',
-            status: "存取中",
-            operation: ""
-        }, {
-            carId: '粤B123456',
-            id: 2,
-            type: '存车',
-            status: "无人处理",
-            operation: "指派"
-        }];
+        const data = this.props.ordersList;
 
         const menu = (
             <Menu onClick={handleMenuClick}>
@@ -81,4 +73,4 @@ class orderManagemen extends Component {
     }
 }
 
-export default orderManagemen;
+export default orderManagement;

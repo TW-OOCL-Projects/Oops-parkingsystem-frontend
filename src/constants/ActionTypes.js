@@ -9,3 +9,4 @@ export const PARKINGLOTLIST = "PARKINGLOTLIST"
 export const ADDPARKINGLOT = "ADDPARKINGLOT"
 
 // order
+export const ORDERSLIST = "ORDERSLIST"

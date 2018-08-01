@@ -6,6 +6,7 @@ import OrderManagement from "./compoments/order-management"
 import ParkingBoy from "./compoments/parking-boy"
 import {Route } from "react-router-dom";
 import parkingLotManagementContainer from './container/parkingLotManagementContainer';
+import OrderManagementContainer from './container/OrderManagementContainer';
 class Router extends Component {
     constructor(props) {
         super(props);
@@ -20,7 +21,7 @@ class Router extends Component {
                 <Route exact path="/home/employeeMangment" component={employeeMangementContainer} />
                 <Route  path="/home/parkingLotMangement" component={parkingLotManagementContainer} />
                 <Route  path="/home/dashboarsh" component={Dashboarsh} />
-                <Route  path="/home/orderManagement" component={OrderManagement} />
+                <Route  path="/home/orderManagement" component={OrderManagementContainer} />
                 <Route  path="/home/parkingBoy" component={ParkingBoy} />
             </div>
         );
