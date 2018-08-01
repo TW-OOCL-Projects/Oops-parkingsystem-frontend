@@ -1,7 +1,7 @@
 // employee
-export const EMPLOYEELIST = "EMPLOYEELIST";
+export const EMPLOYEELIST = "EMPLOYEELIST"
 export const ADDEMPLOYEE = "ADDEMPLOYEE"
-
+export const ACCOUNTSTATUS = "ACCOUNTSTATUS"
 
 // parkinglot
 

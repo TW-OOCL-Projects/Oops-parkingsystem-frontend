@@ -3,6 +3,7 @@ import * as types from '../constants/ActionTypes'
 //  employee
 export const allEmployees = (employeesList) => { return { type: types.EMPLOYEELIST, employeesList } };
 export const addEmployee = (employeeItem) => { return { type: types.ADDEMPLOYEE, employeeItem } };
+export const handleAccountStatus = (employeeItem) => { return { type: types.ACCOUNTSTATUS, employeeItem } };
 
 //  parkinglot
 export const allParkingLots = (parkinglotsList) => { return { type: types.PARKINGLOTLIST, parkinglotsList } }

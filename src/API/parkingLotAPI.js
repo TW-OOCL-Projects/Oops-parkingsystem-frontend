@@ -74,11 +74,9 @@ export default {
                 console.log(error)
             }),
 
-    "frozenAccount": (dispatch, id) => axios.patch(requestUrls.employees + "/" + id)
+    "frozenAccount": (dispatch, id) => axios.patch(requestUrls.employees + "/" + id,{account_status:""})
         .then(res => {
-            console.log(id)
-            console.log(res.data);
-            // dispatch(handleAccountStatus(res.data));
+            dispatch(handleAccountStatus(res.data));
         })
         .catch(error => {
             console.log(error);

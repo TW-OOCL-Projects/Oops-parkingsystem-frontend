@@ -41,7 +41,7 @@ class Edit extends Component {
                                         }],
                                         initialValue:this.props.dataFormat[i]
                                     })(
-                                        <Input />
+                                        <Input disabled={i==="id"?true:false}/>
                                     )}
                                 </FormItem>
                             })

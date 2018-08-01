@@ -9,20 +9,30 @@ class employeeMangment extends Component {
         super(props);
         this.state = {
             isShowEditForm: false,
-            dataFormat: {}
+            dataFormat: {},
+            isModifyAdd: true
         }
     }
     componentWillMount() {
         this.props.onGetAllEmployees()
     }
-    showEditForm = (value, dataFormat) => {
+    showEditForm = (value, dataFormat, key) => {
         this.setState({
             isShowEditForm: value,
-            dataFormat: dataFormat
+            dataFormat: dataFormat,
+            isModifyAdd: key
         })
     }
     submitForm = (value) => {
-        this.props.onAddEmployee(value)
+        if (this.state.isModifyAdd) {
+            this.props.onAddEmployee(value)
+        } else{
+            this.props.onAddEmployee(value)
+        }
+    }
+
+    updateAccountStatus = (id) => {
+        this.props.onChangeAccountSataus(id)
     }
     render() {
         const columns = [{
@@ -46,13 +56,15 @@ class employeeMangment extends Component {
             title: '操作',
             key: 'action',
             render: (e) => {
-                const {id,email,name,password,phone} = e
+                const { id, email, name, password, phone, username } = e
                 return <span >
                     <a href="javascript:;" onClick={
-                        () => this.showEditForm(true, {id,email,name,password,phone})
+                        () => this.showEditForm(true, { id, email, name, password, phone, username }, false)
                     }>修改</a>
                     <Divider type="vertical" />
-                    <a href="javascript:;">冻结</a>
+                    <a href="javascript:;" onClick={
+                        () => this.updateAccountStatus( id)
+                    }>{e.account_status==="normal"?"冻结":"开放"}</a>
                 </span>
             },
         }];
@@ -67,7 +79,7 @@ class employeeMangment extends Component {
                         "username": "",
                         "email": "",
                         "phone": ""
-                    })}>新增</Button>
+                    }, true)}>新增</Button>
                     <div style={{ display: "flex" }}>
                         <InputGroup compact>
                             <Select defaultValue="Option1">
