@@ -10,14 +10,19 @@ class employeeMangment extends Component {
         this.state = {
             isShowEditForm: false,
             dataFormat: {},
-            isModifyAdd: true
+            isModifyAdd: true,
+            searchType:"id"
         }
     }
     componentWillMount() {
         this.props.onGetAllEmployees()
     }
-    showEdit
-    Form = (value, dataFormat, key) => {
+    setSeachType=(e)=>{
+        this.setState({
+            searchType:e
+        })
+    }
+    showEditForm = (value, dataFormat, key) => {
         this.setState({
             isShowEditForm: value,
             dataFormat: dataFormat,
@@ -83,9 +88,11 @@ class employeeMangment extends Component {
                     }, true)}>新增</Button>
                     <div style={{ display: "flex" }}>
                         <InputGroup compact>
-                            <Select defaultValue="Option1">
-                                <Option value="Option1">Option1</Option>
-                                <Option value="Option2">Option2</Option>
+                            <Select defaultValue="id" style={{width:"100px"}} onChange={this.setSeachType}>
+                                <Option value="id">id</Option>
+                                <Option value="name">姓名</Option>
+                                <Option value="email">email</Option>
+                                <Option value="phone">电话号码</Option>
                             </Select>
                         </InputGroup>
                         <Search

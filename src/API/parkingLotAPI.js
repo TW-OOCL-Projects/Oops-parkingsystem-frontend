@@ -1,11 +1,11 @@
 import axios from "axios"
-import { allEmployees, allParkingLots, addEmployee, addParkinglot, allOrders, modifyParkinglot, handleAccountStatus, allParkingLotsInDashboard,updateEmployee } from '../actions'
+import * as actions from '../actions'
 // import {allEmployees ,allParkingLots,addEmployee,allOrders} from '../actions'
 import requestUrls from "./requestUrls"
 export default {
     "getAllEmployees": (dispatch) => axios.get(requestUrls.employees)
         .then((res) => {
-            dispatch(allEmployees(res.data))
+            dispatch(actions.allEmployees(res.data))
         })
         .catch((error) => {
             console.log(error);
@@ -13,7 +13,7 @@ export default {
     "getAllParkingboys": (dispatch) => axios.get(`${requestUrls.employees}?role=parkingboy`)
         .then((res) => {
             console.log(res.data);
-            dispatch(allEmployees(res.data))
+            dispatch(actions.allEmployees(res.data))
         })
         .catch((error) => {
             console.log(error);
@@ -21,7 +21,7 @@ export default {
     "getAllParkingLots": (dispatch) => axios.get(requestUrls.parkingLots)
         .then((res) => {
             console.log(res.data);
-            dispatch(allParkingLots(res.data))
+            dispatch(actions.allParkingLots(res.data))
         })
         .catch((error) => {
             console.log(error);
@@ -35,7 +35,7 @@ export default {
                     axios.get(requestUrls.parkingLots)
                         .then((res) => {
                             console.log(res.data);
-                            dispatch(allParkingLots(res.data))
+                            dispatch(actions.allParkingLots(res.data))
                         })
                         .catch((error) => {
                             console.log(error);
@@ -49,7 +49,7 @@ export default {
         axios.post(requestUrls.employees, postData)
             .then((res) => {
                 // console.log(res.data);
-                dispatch(addEmployee(res.data))
+                dispatch(actions.addEmployee(res.data))
             })
             .catch((error) => {
                 console.log(error);
@@ -58,7 +58,7 @@ export default {
         axios.post(requestUrls.parkingLots, postData)
             .then(res => {
                 // console.log(res.data);
-                dispatch(addParkinglot(res.data));
+                dispatch(actions.addParkinglot(res.data));
             })
             .catch(error => {
                 console.log(error);
@@ -68,7 +68,7 @@ export default {
         axios.put(`${requestUrls.parkingLots}/${id}`, value)
             .then(res => {
                 // console.log("-------"+JSON.stringify(res.data));
-                dispatch(modifyParkinglot(res.data))
+                dispatch(actions.modifyParkinglot(res.data))
                 // console.log("-----ok")
             })
             .catch(error => {
@@ -78,7 +78,7 @@ export default {
     "frozenAccount": (dispatch, id) => axios.patch(requestUrls.employees + "/" + id, { account_status: "" })
         .then(res => {
             console.log("--------")
-            dispatch(handleAccountStatus(res.data));
+            dispatch(actions.handleAccountStatus(res.data));
         })
         .catch(error => {
             console.log(error);
@@ -87,7 +87,7 @@ export default {
     "getAllOrders": (dispatch) => axios.get(requestUrls.orders)
         .then((res) => {
             console.log(res.data);
-            dispatch(allOrders(res.data))
+            dispatch(actions.allOrders(res.data))
         })
         .catch((error) => {
             console.log(error);
@@ -95,17 +95,26 @@ export default {
     "getAllParkingLotsInDashboard": (dispatch) => axios.get(requestUrls.parkingLotsDashboard)
         .then((res) => {
             console.log(res.data);
-            dispatch(allParkingLotsInDashboard(res.data))
+            dispatch(actions.allParkingLotsInDashboard(res.data))
         })
         .catch((error) => {
             console.log(error);
         }),
-    "updateEmployee": (dispatch,employee) => axios.patch(requestUrls.employees + "/" + employee.id,employee)
+    "updateEmployee": (dispatch, employee) => axios.patch(requestUrls.employees + "/" + employee.id, employee)
         .then((res) => {
             console.log(res.data);
-            dispatch(updateEmployee(res.data))
+            dispatch(actions.updateEmployee(res.data))
         })
         .catch((error) => {
             console.log(error);
         }),
+    "searchEmployees": (dispatch, searchValue) => axios.post(requestUrls.employees+"/search", searchValue)
+        .then((res) => {
+            console.log(res.data);
+            dispatch(actions.searchEmployees(res.data))
+        })
+        .catch((error) => {
+            console.log(error);
+        }),
+
 }

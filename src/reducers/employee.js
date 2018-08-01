@@ -17,7 +17,6 @@ export default (state=[], action) => {
             return newState;
         }
         case types.UPDATEEMPLOYEE:{
-            console.log(action.employeeItem)
             let newState = [...state]
             return newState.map(i=>{
                 if(i.id === action.employeeItem.id){
@@ -26,6 +25,11 @@ export default (state=[], action) => {
                     return i
                 }
             }) 
+        }
+        case types.SEARCHEMPLOYEE:{
+            console.log(action.employeesList)
+            let newState = [...action.employeesList]
+            return newState
         }
         default:
             return state

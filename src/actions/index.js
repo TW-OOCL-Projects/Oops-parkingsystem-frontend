@@ -5,6 +5,7 @@ export const allEmployees = (employeesList) => { return { type: types.EMPLOYEELI
 export const addEmployee = (employeeItem) => { return { type: types.ADDEMPLOYEE, employeeItem } };
 export const handleAccountStatus = (employeeItem) => { return { type: types.ACCOUNTSTATUS, employeeItem } };
 export const updateEmployee = (employeeItem)=>{return {type: types.UPDATEEMPLOYEE, employeeItem}}
+export const searchEmployees = (employeesList)=>{return {type: types.SEARCHEMPLOYEE, employeesList}}
 
 //  parkinglot
 export const allParkingLots = (parkinglotsList) => { return { type: types.PARKINGLOTLIST, parkinglotsList } }

@@ -22,6 +22,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onUpdateEmployee: (employee) => {
             Api.updateEmployee(dispatch,employee)
         },
+        onSearchEmployees: (searchValue) => {
+            Api.searchEmployees(dispatch,searchValue)
+        },
     }
 }
 
