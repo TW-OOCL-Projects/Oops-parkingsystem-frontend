@@ -10,7 +10,6 @@ class ParkingLotMangement extends Component {
             isShowModifyForm: false,
             dataFormat:{},
             modifyId : 0,
-            
         }
     }
 
@@ -71,9 +70,10 @@ class ParkingLotMangement extends Component {
 
         const menu = (
             <Menu onClick={handleMenuClick}>
-                <Menu.Item key="1">1st menu item</Menu.Item>
-                <Menu.Item key="2">2nd menu item</Menu.Item>
-                <Menu.Item key="3">3rd item</Menu.Item>
+                <Menu.Item key="1">name</Menu.Item>
+                <Menu.Item key="2">parking boy tel</Menu.Item>
+                <Menu.Item key="3">size bigger than</Menu.Item>
+                <Menu.Item key="4">size smaller than</Menu.Item>
             </Menu>
         );
 
@@ -84,12 +84,11 @@ class ParkingLotMangement extends Component {
 
         function handleMenuClick(e) {
             message.info('Click on menu item.');
-            console.log('click', e);
+            console.log('click', e.key);
         }
         const Search = Input.Search;
         return (
             <div>
-                {this.state.isModifyEditForm}
                 <Row type="flex" justify="space-around" align="middle" >
                     <Col span={6}>
                         <Button type="primary" onClick={() => this.showEditForm(true)}>新建</Button>

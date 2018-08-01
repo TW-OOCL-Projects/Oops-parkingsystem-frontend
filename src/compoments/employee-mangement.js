@@ -22,6 +22,7 @@ class employeeMangment extends Component {
             searchType:e
         })
     }
+
     showEditForm = (value, dataFormat, key) => {
         this.setState({
             isShowEditForm: value,
