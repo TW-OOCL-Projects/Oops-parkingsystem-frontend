@@ -6,6 +6,10 @@ export default (state=[], action) => {
             newState = action.employeesList
             return newState;
         }
+        case types.ADDEMPLOYEE:{
+            let newState = [...state,action.employeeItem]
+            return newState;
+        }
         default:
             return state
     }

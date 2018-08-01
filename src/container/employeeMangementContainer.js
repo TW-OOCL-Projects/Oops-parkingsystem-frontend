@@ -13,6 +13,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onGetAllEmployees: () => {
             Api.getAllEmployees(dispatch)
         },
+        onAddEmployee: (postData) => {
+            Api.addEmployee(dispatch,postData)
+        },
     }
 }
 

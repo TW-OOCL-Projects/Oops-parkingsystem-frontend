@@ -1,5 +1,5 @@
 import axios from "axios"
-import {allEmployees ,allParkingLots} from '../actions'
+import {allEmployees ,allParkingLots,addEmployee} from '../actions'
 import requestUrls from "./requestUrls"
 export default {
     "getAllEmployees": (dispatch) => axios.get(requestUrls.employees)
@@ -37,4 +37,12 @@ export default {
             .catch(error=>{
                 console.log(error)
             }),
+    "addEmployee": (dispatch,postData) => axios.post(requestUrls.employees,postData)
+        .then((res) => {
+            console.log(res.data);
+            dispatch(addEmployee(res.data))
+        })
+        .catch((error) => {
+            console.log(error);
+        }),
 }

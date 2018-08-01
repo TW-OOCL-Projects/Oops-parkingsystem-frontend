@@ -3,5 +3,8 @@ export const allEmployees = (employeesList) => { return { type: types.EMPLOYEELI
 
 export const allParkingLots = (parkinglotsList) => { return { type: types.PARKINGLOTLIST, parkinglotsList } }
 
+export const addEmployee = (employeeItem) => { return { type: types.ADDEMPLOYEE, employeeItem } };
+
+
 
 
