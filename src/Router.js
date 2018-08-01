@@ -4,7 +4,7 @@ import ParkingLotMangement from "./compoments/parkingLot-management";
 import Dashboarsh from "./container/dashboarshContainer";
 import OrderManagement from "./compoments/order-management"
 import ParkingBoy from "./container/parkingBoyContainer"
-import {Route } from "react-router-dom";
+import { Route,Redirect } from "react-router-dom";
 import parkingLotManagementContainer from './container/parkingLotManagementContainer';
 import OrderManagementContainer from './container/OrderManagementContainer';
 class Router extends Component {
@@ -16,13 +16,13 @@ class Router extends Component {
     render() {
         return (
             <div>
-                {/* <Route exact path="/login" component={LoginForm} /> */}
-                {/* <Route  path="/home" component={HomePage} /> */}
-                <Route exact path="/home/employeeMangment" component={employeeMangementContainer} />
-                <Route  path="/home/parkingLotMangement" component={parkingLotManagementContainer} />
-                <Route  path="/home/dashboarsh" component={Dashboarsh} />
-                <Route  path="/home/orderManagement" component={OrderManagementContainer} />
-                <Route  path="/home/parkingBoy" component={ParkingBoy} />
+                <Route path="/home/employeeMangment" component={employeeMangementContainer} />
+                <Route path="/home/parkingLotMangement" component={parkingLotManagementContainer} />
+                <Route path="/home/dashboarsh" component={Dashboarsh} />
+                <Route path="/home/orderManagement" component={OrderManagementContainer} />
+                <Route path="/home/parkingBoy" component={ParkingBoy} />
+                <Redirect to="/home/employeeMangment" />
+
             </div>
         );
     }
