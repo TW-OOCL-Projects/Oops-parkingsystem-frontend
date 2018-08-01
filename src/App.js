@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Home from "./compoments/home"
 import Login from "./compoments/LoginForm"
-import { Route } from "react-router-dom";
+import { Route,Redirect } from "react-router-dom";
 class App extends Component {
   constructor(props) {
     super(props)
@@ -18,7 +18,8 @@ class App extends Component {
     return (
       <div style={{height:"100%"}}>
          <Route path="/home" component={Home} />
-         <Route path="/login" component={Login} />
+         <Route strict path="/login" component={Login} />
+         <Redirect to="/login"  />
       </div>
     );
   }
