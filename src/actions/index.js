@@ -8,7 +8,7 @@ export const handleAccountStatus = (employeeItem) => { return { type: types.ACCO
 //  parkinglot
 export const allParkingLots = (parkinglotsList) => { return { type: types.PARKINGLOTLIST, parkinglotsList } }
 export const addParkinglot = (parkinglotItem) => {return {type: types.ADDPARKINGLOT, parkinglotItem}};
-export const modifyParkinglot = (parkinglot)=>{return {type: types.MODIFYPARKINGLOT, parkinglot}}
+export const modifyParkinglot = (parkinglotItem)=>{return {type: types.MODIFYPARKINGLOT, parkinglotItem}}
 
 
 // order

@@ -4,7 +4,14 @@ export default (state=[], action) => {
         case types.MODIFYPARKINGLOT:
         case types.ADDPARKINGLOT:{
             let newState = [...state,action.parkinglotItem]
-            return newState;
+            return newState.filter(p=>{
+                if(p.id === action.parkinglotItem.id){
+                    if(p.name !== action.parkinglotItem.name ||
+                            p.size !== action.parkinglotItem.size)
+                        return false;
+                }
+                return true;
+            });
         }
         case types.PARKINGLOTLIST:{
             let newState = [...state]

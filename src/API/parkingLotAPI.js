@@ -67,11 +67,12 @@ export default {
     "modifyParkinglot": (id, value, dispatch) =>
         axios.put(`${requestUrls.parkingLots}/${id}`, value)
             .then(res => {
-                console.log(res);
+                console.log("-------"+JSON.stringify(res.data));
                 dispatch(modifyParkinglot(res.data))
+                console.log("-----ok")
             })
             .catch(error => {
-                console.log(error)
+                //console.log(error)
             }),
 
     "frozenAccount": (dispatch, id) => axios.patch(requestUrls.employees + "/" + id,{account_status:""})
