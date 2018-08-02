@@ -10,7 +10,6 @@ class parkingBoy extends Component {
         this.state = {
             isShowEditForm: false,
             dataFormat: {},
-            parkinglots:[],
         }
     }
     componentWillMount() {
