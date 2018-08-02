@@ -24,7 +24,7 @@ export default (state=[], action) => {
                 } else {
                     return i
                 }
-            }) 
+            })
         }
         case types.SEARCHEMPLOYEE:{
             console.log(action.employeesList)
