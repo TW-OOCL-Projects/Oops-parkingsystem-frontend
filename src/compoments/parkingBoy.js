@@ -10,50 +10,51 @@ class parkingBoy extends Component {
         this.state = {
             isShowEditForm: false,
             dataFormat: {},
+            parkinglots:[],
         }
     }
     componentWillMount() {
         this.props.onGetAllParkingboys();
-        this.props.onGetNoUserParkinglots();
+        this.props.onGetAllParkinglots();
+        this.setState({
+            parkinglots: this.props.parkinglots,
+        })
+        console.log(this.state.parkinglots)
     }
 
 
     filterOption = (inputValue, option) => {
-        console.log("++++++++"+JSON.stringify(inputValue))
+        // console.log("++++++++"+JSON.stringify(inputValue))
         return option.description.indexOf(inputValue) > -1;
     }
 
-    // handleChange = (targetKeys) => {
-    //     this.setState({ targetKeys });
-    // }
-
     handleChange = (nextTargetKeys, direction, moveKeys, id) => {
-        console.log('targetKeys: ', nextTargetKeys);
-        console.log('direction: ', direction);
-        console.log('moveKeys: ', moveKeys);
+        // console.log('targetKeys: ', nextTargetKeys);
+        // console.log('direction: ', direction);
+        // console.log('moveKeys: ', moveKeys);
         if(direction === "right"){
             this.props.onAssignParkinglot(id, moveKeys);
-            this.getParkinglots();
+            this.props.onGetAllParkingboys();
+            this.props.onGetAllParkinglots();
         }else{
 
         }
       }
 
-    getParkinglots = () => {
-        this.props.onGetNoUserParkinglots();
-    }
-
     generateTransfer = (e) => {
         console.log(e)
-        const parkinglotData = 
-            [...this.props.noUserPakinglots, ...e.parkinglots].map(p=>{
-                return {
-                    key : p.id, 
-                    name: p.name,
-                    status : p.status,
-                }
-            });
-        const targetKeys = e.parkinglots.map(lot=>lot.id)
+        console.log(this.props.parkinglots)
+        const parkinglotData = this.props.parkinglots.filter( lot=>
+            (lot.status === "open" && (lot.userId == null || lot.userId === e.id))
+        ).map(lot=>{
+            return {...lot,
+                    key: lot.id}
+        })
+        console.log(parkinglotData)
+        const targetKeys = parkinglotData.filter(lot=>
+            lot.userId === e.id
+        ).map(lot=>lot.key)
+        console.log(targetKeys)
         return (
             <Transfer
                 dataSource={parkinglotData}//数据源，其中的数据会被渲染到左侧一栏

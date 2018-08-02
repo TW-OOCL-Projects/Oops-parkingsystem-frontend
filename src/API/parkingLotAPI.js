@@ -20,8 +20,10 @@ export default {
         .catch((error) => {
             console.log(error);
         }),
-    "getAllParkingLots": (dispatch) => axios.get(requestUrls.parkingLots)
+    "getAllParkingLots": (dispatch) => 
+        axios.get(requestUrls.parkingLots)
         .then((res) => {
+            console.log("------"+JSON.stringify(res.data))
             dispatch(actions.allParkingLots(res.data))
         })
         .catch((error) => {
@@ -99,8 +101,10 @@ export default {
         .catch((error) => {
             console.log(error);
         }),
-    "getAllParkingLotsInDashboard": (dispatch) => axios.get(requestUrls.parkingLotsDashboard)
+    "getAllParkingLotsInDashboard": (dispatch) => 
+        axios.get(requestUrls.parkingLotsDashboard)
         .then((res) => {
+            console.log(res.data)
             dispatch(actions.allParkingLotsInDashboard(res.data))
         })
         .catch((error) => {
