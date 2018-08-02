@@ -4,6 +4,7 @@ import requestUrls from "./requestUrls"
 axios.defaults.headers.common['authorization'] = localStorage.getItem("access_token");
 export default {
     "getAllEmployees": (dispatch) =>{
+        axios.defaults.headers.common['authorization'] = localStorage.getItem("access_token");
         axios.get(requestUrls.employees)
             .then((res) => {
                 dispatch(actions.allEmployees(res.data))
