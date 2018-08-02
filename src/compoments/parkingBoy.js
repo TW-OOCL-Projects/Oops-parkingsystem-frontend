@@ -10,37 +10,16 @@ class parkingBoy extends Component {
         this.state = {
             isShowEditForm: false,
             dataFormat: {},
-            mockData: [],//mock
-            targetKeys: []//mock
         }
     }
     componentWillMount() {
-        this.props.onGetAllParkingboys()
+        this.props.onGetAllParkingboys();
+        this.props.onGetNoUserParkinglots();
     }
 
-    componentDidMount() {//mock
-        this.getMock();
-    }
-
-    getMock = () => {
-        const targetKeys = [];
-        const mockData = [];
-        for (let i = 0; i < 20; i++) {
-            const data = {
-                key: i.toString(),
-                title: `content${i + 1}`,
-                description: `description of content${i + 1}`,
-                chosen: Math.random() * 2 > 1,
-            };
-            if (data.chosen) {
-                targetKeys.push(data.key);
-            }
-            mockData.push(data);
-        }
-        this.setState({ mockData, targetKeys });
-    }
 
     filterOption = (inputValue, option) => {
+        console.log("++++++++"+JSON.stringify(inputValue))
         return option.description.indexOf(inputValue) > -1;
     }
 
@@ -48,18 +27,36 @@ class parkingBoy extends Component {
     //     this.setState({ targetKeys });
     // }
 
-    handleChange = (nextTargetKeys, direction, moveKeys) => {
-        this.setState({ targetKeys: nextTargetKeys });
-    
+    handleChange = (nextTargetKeys, direction, moveKeys, id) => {
         console.log('targetKeys: ', nextTargetKeys);
         console.log('direction: ', direction);
         console.log('moveKeys: ', moveKeys);
+        if(direction === "right"){
+            this.props.onAssignParkinglot(id, moveKeys);
+            this.getParkinglots();
+        }else{
+
+        }
       }
 
-    generateTransfer = () => {
+    getParkinglots = () => {
+        this.props.onGetNoUserParkinglots();
+    }
+
+    generateTransfer = (e) => {
+        console.log(e)
+        const parkinglotData = 
+            [...this.props.noUserPakinglots, ...e.parkinglots].map(p=>{
+                return {
+                    key : p.id, 
+                    name: p.name,
+                    status : p.status,
+                }
+            });
+        const targetKeys = e.parkinglots.map(lot=>lot.id)
         return (
             <Transfer
-                dataSource={this.state.mockData}//数据源，其中的数据会被渲染到左侧一栏
+                dataSource={parkinglotData}//数据源，其中的数据会被渲染到左侧一栏
                 showSearch//显示搜索框
                 listStyle={{
                     width: 250,
@@ -68,9 +65,9 @@ class parkingBoy extends Component {
                 searchPlaceholder='请输入搜索内容'
                 titles={['可选停车场', '管理的停车场']}
                 filterOption={this.filterOption}
-                targetKeys={this.state.targetKeys}//显示在右侧框数据的key集合
-                onChange={this.handleChange}//选项在两栏之间转移时的回调函数
-                render={item => item.title}
+                targetKeys={targetKeys}//显示在右侧框数据的key集合
+                onChange={(nextTargetKeys, direction, moveKeys)=>this.handleChange(nextTargetKeys, direction, moveKeys, e.id)}//选项在两栏之间转移时的回调函数
+                render={item => item.name}
             />)
     }
 
@@ -143,7 +140,7 @@ class parkingBoy extends Component {
                 <Table columns={columns}
                     bordered
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
-                    expandedRowRender={() => this.generateTransfer()}
+                    expandedRowRender={this.generateTransfer}
                     dataSource={data} scroll={{ x: 1300 }} />
                 {this.state.isShowEditForm && <Edit dataFormat={this.state.dataFormat} showEditForm={(e) => this.showEditForm(e)} submitForm={(e) => this.submitForm(e)} />}
             </div>

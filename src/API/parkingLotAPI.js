@@ -24,6 +24,14 @@ export default {
             console.log(error);
         }),
 
+    "getNoUserParkinglots": (dispatch)=> axios.get(requestUrls.parkingLots+"/noUser")
+        .then(res=>{
+            dispatch(actions.allParkingLots(res.data))
+        })
+        .catch(error => {
+            console.log(error)
+        }),
+
     "changeParkingLotStatus": (id, dispatch) =>
         axios.patch(`${requestUrls.parkingLots}/${id}`)
             .then(res => {
@@ -120,5 +128,29 @@ export default {
             console.log(error);
         });
     },
+
+    "assignParkinglot":(dispatch,userId, ids)=>{
+        let path = `${requestUrls.employees}/${userId}/parkinglots/`
+        ids.map(id=>{
+            axios.patch(`${path}${id}`)
+            .then(res=>{
+                console.log(res)
+                return true;
+            })
+            .catch(error=>{
+                console.log(error)
+                return false;
+            })
+        }).filter(state=>!state)
+
+        axios.get(`${requestUrls.employees}/id=${userId}`)
+        .then(res=>{
+            dispatch(actions.updateEmployee(res.data))
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+
+    }
 
 }
