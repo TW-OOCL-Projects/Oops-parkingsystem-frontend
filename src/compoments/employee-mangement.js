@@ -103,16 +103,16 @@ class employeeMangment extends Component {
                         </InputGroup>
                         <Search
                             style={{ width: 400 }}
-                            placeholder="input search text"
+                            placeholder="示例文字"
                             onSearch={value => this.props.onSearchEmployees({
                                 searchType: this.state.searchType,
                                 searchValue: value
                             })}
-                            enterButton
+                            enterButton="搜索"
                         />
                     </div>
                 </div>
-                {data&&<Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />}
+                {data&&<Table bordered columns={columns} dataSource={data} scroll={{ x: 1300 }} />}
                 {this.state.isShowEditForm && <Edit dataFormat={this.state.dataFormat} showEditForm={(e) => this.showEditForm(e)} submitForm={(e) => this.submitForm(e)} />}
             </div>
         );

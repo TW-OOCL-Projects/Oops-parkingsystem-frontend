@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Table, Icon, Divider, Button, Menu, Dropdown, message, Input, Row, Col } from 'antd'
+import { Table, Select,  Menu, Dropdown, message, Input, Row, Col } from 'antd'
+
+const InputGroup = Input.Group;
+const Option = Select.Option;
 class orderManagement extends Component {
     constructor(props) {
         super(props);
@@ -52,16 +55,18 @@ class orderManagement extends Component {
                     <Col span={6}></Col>
                     <Col span={6}></Col>
                     <Col span={6} align="right">
-                        <Dropdown overlay={menu}>
-                            <Button style={{ marginLeft: 20 }}>
-                                选项一 <Icon type="down" />
-                            </Button>
-                        </Dropdown></Col>
+                    <InputGroup compact>
+                            <Select defaultValue="id" style={{ width: "100px" }} onChange={(e) =>console.log(e)}>
+                                <Option value="name">姓名</Option>
+                                <Option value="email">email</Option>
+                                <Option value="tel">电话号码</Option>
+                            </Select>
+                        </InputGroup>
+                    </Col>
                     <Col span={6}>
                         <Search
                             placeholder="示例文字"
-                            enterButton="Search"
-                            size="large"
+                            enterButton="搜索"
                             onSearch={value => console.log(value)}
                             style={{ width: 400 }}
                         />

@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import Router from "../Router";
 import Tabbars from "./tabbars";
 import { Avatar, Layout, Icon, Menu, Dropdown, message, Popconfirm } from 'antd';
-const { Header, Content } = Layout;
+const { Header, Content, Footer } = Layout;
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -11,8 +11,8 @@ class Home extends Component {
       collapsed: false,
     }
   }
-  confirm=()=> {
-    const {history}=this.props
+  confirm = () => {
+    const { history } = this.props
     localStorage.removeItem("access_token")
     history.push("/login")
     message.info('退出登录成功');
@@ -55,6 +55,9 @@ class Home extends Component {
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280, minWidth: "100%" }}>
             <Router />
           </Content>
+          <Footer style={{ textAlign: 'center' }}>
+            Parking System ©2018 Created by Oops
+    </Footer>
         </Layout>
       </Layout>
     );

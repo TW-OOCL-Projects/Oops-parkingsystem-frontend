@@ -125,16 +125,17 @@ class parkingBoy extends Component {
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
                     <div style={{ display: "flex" }}>
                         <InputGroup compact>
-                            <Select defaultValue="Option1">
-                                <Option value="Option1">Option1</Option>
-                                <Option value="Option2">Option2</Option>
+                            <Select defaultValue="id" style={{ width: 120 }}>
+                                <Option value="option1">id</Option>
+                                <Option value="Option2">姓名</Option>
+                                <Option value="Option3">电话号码</Option>
                             </Select>
                         </InputGroup>
                         <Search
                             style={{ width: 400 }}
-                            placeholder="input search text"
+                            placeholder="示例文字"
                             onSearch={value => console.log(value)}
-                            enterButton
+                            enterButton="搜索"
                         />
                     </div>
                 </div>
