@@ -112,7 +112,7 @@ class employeeMangment extends Component {
                         />
                     </div>
                 </div>
-                <Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
+                {data&&<Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />}
                 {this.state.isShowEditForm && <Edit dataFormat={this.state.dataFormat} showEditForm={(e) => this.showEditForm(e)} submitForm={(e) => this.submitForm(e)} />}
             </div>
         );

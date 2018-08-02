@@ -11,24 +11,22 @@ class NormalLoginForm extends Component{
         this.props.form.validateFields((err, values) => {
           if (!err) {
             let postData={"username":values.userName,"password":values.password}
-            console.log(postData)
-            // axios.post(requestUrls.login,postData)//.employees
-            //       .then((res) => {
-            // console.log("-----then--"+postData)
-            //           alert(res.data)
-            //     })
-            //     .catch((error) => {
-            // console.log("-------"+postData)
-            //         console.log(error);
-            //     })
-            if(values.userName==="123"&&values.password==="123"){   
-              message.info('登录成功');
-              localStorage.setItem("access_token", "token123");
-              console.log(localStorage.getItem("access_token"))
-              const {history}=this.props;
-              history.push("/home/employeeMangment")
-            }
-            console.log('Received values of form: ', values);
+            axios.post(requestUrls.login,postData)//.employees
+                  .then((res) => {
+                    console.log(res)
+                    if(res.status===200){
+                        message.info('登录成功');
+                        localStorage.setItem("access_token", res.data);
+
+                        const {history}=this.props;
+                        history.push("/home/employeeMangment")
+                    } else {
+                        message.info('未知异常！');
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
           }
         });
       }
@@ -37,7 +35,7 @@ class NormalLoginForm extends Component{
         return (
           <Row type="flex" justify="space-around" align="center">
           <Col span={5}>
-          <Form onSubmit={this.handleSubmit} className="login-form">
+          <Form onSubmit={(e)=>this.handleSubmit(e)} className="login-form">
             <h1>请先登录</h1>
             <FormItem>
               {getFieldDecorator('userName', {

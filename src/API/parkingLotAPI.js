@@ -1,14 +1,17 @@
 import axios from "axios"
 import * as actions from '../actions'
 import requestUrls from "./requestUrls"
+axios.defaults.headers.common['authorization'] = localStorage.getItem("access_token");
 export default {
-    "getAllEmployees": (dispatch) => axios.get(requestUrls.employees)
-        .then((res) => {
-            dispatch(actions.allEmployees(res.data))
-        })
-        .catch((error) => {
-            console.log(error);
-        }),
+    "getAllEmployees": (dispatch) =>{
+        axios.get(requestUrls.employees)
+            .then((res) => {
+                dispatch(actions.allEmployees(res.data))
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    },
     "getAllParkingboys": (dispatch) => axios.get(`${requestUrls.employees}?role=parkingboy`)
         .then((res) => {
             dispatch(actions.allEmployees(res.data))
@@ -80,7 +83,7 @@ export default {
                 //console.log(error)
             }),
 
-    "frozenAccount": (dispatch, id) => axios.patch(requestUrls.employees + "/" + id, { account_status: "" })
+    "frozenAccount": (dispatch, id) => axios.patch(requestUrls.employees + "/" + id, {account_status: ""})
         .then(res => {
             dispatch(actions.handleAccountStatus(res.data));
         })
@@ -109,7 +112,7 @@ export default {
         .catch((error) => {
             console.log(error);
         }),
-    "searchEmployees": (dispatch, searchValue) => axios.get(requestUrls.employees+"/search?"+searchValue.searchType+"="+searchValue.searchValue+"")
+    "searchEmployees": (dispatch, searchValue) => axios.get(requestUrls.employees + "/search?" + searchValue.searchType + "=" + searchValue.searchValue + "")
         .then((res) => {
             dispatch(actions.searchEmployees(res.data))
         })
@@ -117,16 +120,16 @@ export default {
             console.log(error);
         }),
 
-    "searchParkinglot":(value, searchType, dispatch) => {
+    "searchParkinglot": (value, searchType, dispatch) => {
         let search = `?${searchType}=${value}`;
-        axios.get(requestUrls.parkingLotCombineSearch+search)
-        .then(res=>{
-            console.log(res);
-            dispatch(actions.allParkingLots(res.data));
-        })
-        .catch(error=>{
-            console.log(error);
-        });
+        axios.get(requestUrls.parkingLotCombineSearch + search)
+            .then(res => {
+                console.log(res);
+                dispatch(actions.allParkingLots(res.data));
+            })
+            .catch(error => {
+                console.log(error);
+            });
     },
 
     "assignParkinglot":(dispatch,userId, ids)=>{

@@ -18,12 +18,12 @@ class App extends Component {
     return (
       <div style={{ height: "100%" }}>
         <Route path="/home" component={Home} />
-        <Route strict path="/login" component={Login} />
+        <Route  path="/login" component={Login} />
         {
           !localStorage.getItem("access_token") && window.location.href.indexOf("/login")===-1&& < Redirect to="/login" />
         }
         {
-         
+
           localStorage.getItem("access_token") && < Redirect to="/home/employeeMangment" />
         }
       </div>
