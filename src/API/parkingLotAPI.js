@@ -94,7 +94,8 @@ export default {
             console.log(error);
         }),
 
-    "getAllOrders": (dispatch) => axios.get(requestUrls.orders)
+    "getAllOrders": (dispatch) => 
+        axios.get(requestUrls.orders)   
         .then((res) => {
             dispatch(actions.allOrders(res.data))
         })
