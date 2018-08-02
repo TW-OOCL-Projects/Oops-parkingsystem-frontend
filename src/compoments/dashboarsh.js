@@ -27,7 +27,7 @@ class Dashboarsh extends Component {
                                     <Progress type="circle" percent={item.countOfCars} width={80} format={percent=>`${percent} /${item.size}`} />
                                     <span>停车员：{item.id}</span>   
                                 </Row>
-                                <p style={{marginLeft:"20px"}}>停车场情况</p>
+                                <p style={{marginLeft:"45px"}}>停车场情况</p>
                                 </Panel>
                                 </Collapse>   
                             </div>
