@@ -16,16 +16,16 @@ class NormalLoginForm extends Component{
                     console.log(res)
                     if(res.status===200){
                         message.info('登录成功');
-                        localStorage.setItem("access_token", res.data);
+                        localStorage.setItem("access_token", res.data.token);
 
                         const {history}=this.props;
-                        history.push("/home/employeeMangment")
+                        history.push("/home/employeeMangment/"+res.data.id)
                     } else {
                         message.info('未知异常！');
                     }
                 })
                 .catch((error) => {
-                    console.log(error);
+                  message.info('账号或密码错误！');
                 })
           }
         });
