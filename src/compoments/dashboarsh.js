@@ -20,7 +20,7 @@ class Dashboarsh extends Component {
                  {items.map(item=>{
                     //  return <li>{item.id}{item.name}{item.size}{item.countOfCars}</li>
                     return <Col span={8} style={{marginBottom:"15px"}}>   
-                            <div style={{width:"250px"}}>
+                            <div style={{width:"350px"}}>
                                 <Collapse defaultActiveKey={['1']} >
                                 <Panel showArrow={false} header={item.name} key="1">  
                                 <Row type="flex" justify="space-around" align="middle">
