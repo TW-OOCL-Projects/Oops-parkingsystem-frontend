@@ -154,14 +154,46 @@ export default {
         ids.map(id=>{
             axios.patch(`${path}${id}`)
             .then(res=>{
-                console.log(res)
+                message.success(`${id}号停车场指派成功`)
                 return true;
             })
             .catch(error=>{
                 console.log(error)
+                message.error(`${id}号停车场指派失败`)
                 return false;
             })
         }).filter(state=>!state)
+
+        axios.get(`${requestUrls.employees}/id=${userId}`)
+        .then(res=>{
+            message.success("hhhhh");
+            dispatch(actions.updateEmployee(res.data))
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+
+        axios.get(requestUrls.parkingLots)
+        .then(res => {
+            console.log(res);
+            dispatch(actions.allParkingLots(res.data));
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    },
+
+    "deleteParkinglots":(userId, ids, dispatch) => {
+        let path = `${requestUrls.employees}/${userId}/parkinglots/`
+        ids.map(id=>{
+            axios.delete(`${path}${id}`)
+            .then(res=>{
+                message.success(`${id}号停车场收回成功`)
+            })
+            .catch(error=>{
+                message.error(`${id}号停车场指派失败`)
+            })
+        })
 
         axios.get(`${requestUrls.employees}/id=${userId}`)
         .then(res=>{
@@ -171,6 +203,14 @@ export default {
             console.log(error)
         })
 
-    }
+        axios.get(requestUrls.parkingLots)
+        .then(res => {
+            console.log(res);
+            dispatch(actions.allParkingLots(res.data));
+        })
+        .catch(error => {
+            console.log(error);
+        });
+    },
 
 }

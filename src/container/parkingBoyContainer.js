@@ -29,6 +29,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             Api.assignParkinglot(dispatch,userId, ids)
         },
 
+        onDeleteParkinglot:(userId, ids)=>{
+            Api.deleteParkinglots(userId, ids, dispatch)
+        }
+
     }
 }
 

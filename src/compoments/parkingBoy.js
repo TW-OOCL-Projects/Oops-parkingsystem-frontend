@@ -28,15 +28,12 @@ class parkingBoy extends Component {
     }
 
     handleChange = (nextTargetKeys, direction, moveKeys, id) => {
-        // console.log('targetKeys: ', nextTargetKeys);
-        // console.log('direction: ', direction);
-        // console.log('moveKeys: ', moveKeys);
         if(direction === "right"){
             this.props.onAssignParkinglot(id, moveKeys);
             this.props.onGetAllParkingboys();
             this.props.onGetAllParkinglots();
         }else{
-
+            this.props.onDeleteParkinglot(id, moveKeys)
         }
       }
 
@@ -53,7 +50,6 @@ class parkingBoy extends Component {
         const targetKeys = parkinglotData.filter(lot=>
             lot.userId === e.id
         ).map(lot=>lot.key)
-        console.log(targetKeys)
         return (
             <Transfer
                 dataSource={parkinglotData}//数据源，其中的数据会被渲染到左侧一栏
