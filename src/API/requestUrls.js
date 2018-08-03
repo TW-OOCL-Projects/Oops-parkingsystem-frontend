@@ -1,6 +1,6 @@
 // const globalUrl = "https://parkinglot-backend.herokuapp.com/api/v1/" //dev
 const globalUrl = "http://10.222.232.147:8080/api/v1/" //test
- const globalUrl = "http://10.222.232.148:8080/api/v1/" // carol test
+//  const globalUrl = "http://10.222.232.148:8080/api/v1/" // carol test
 
 export default {
     "login":globalUrl + "login",
