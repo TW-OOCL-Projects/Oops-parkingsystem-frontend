@@ -1,15 +1,58 @@
 import React, { Component } from 'react';
-import { Table, Select, Input, Row, Col } from 'antd'
-
+import { Modal,Button,Table, Select,  Menu, Dropdown, message, Input, Row, Col , Radio} from 'antd'
 const InputGroup = Input.Group;
 const Option = Select.Option;
 const Search = Input.Search;
+const RadioGroup = Radio.Group;
 class orderManagement extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            searchType: "id"
+            searchType: "id",
+            availableParkingBoy:[],
+            visible: false,
+            value: 1,
+            radios:[],
+            id:1,
         }
+    }
+    showModal = () => {
+        this.setState({
+            visible: true,
+        });
+    }
+    onChange = (e) => {
+        console.log(e.target.value)
+        this.setState({
+            value: e.target.value,
+        });
+    }
+    handleOk = (e) => {
+        this.props.onPostOrderToParkingBoy(this.state.id,this.state.value);
+        this.setState({
+            visible: false,
+        });
+
+    }
+    handleCancel = (e) => {
+        this.setState({
+            visible: false,
+        });
+    }
+    getAllAvailableBoys = (id)=>{
+        this.props.onGetAvailableBoys(this.updateState,id);
+
+    }
+    updateState = (availableBoys,id) =>{
+
+        let radios = [];
+        for(let i = 0;i<availableBoys.length;i++){
+            radios.push( <Radio  key ={i} value={availableBoys[i].id} >{availableBoys[i].name}</Radio>);
+        }
+        console.log(id);
+        this.setState({availableParkingBoy:availableBoys,radios,id});
+        console.log(this.state.id)
+        this.showModal();
     }
     componentWillMount() {
         this.props.onGetAllOrders();
@@ -22,25 +65,32 @@ class orderManagement extends Component {
     }
 
     render() {
-        const columns = [
-            // { title: 'Full Name', width: 100, dataIndex: 'name', key: 'name', fixed: 'left' },
-            { title: 'id', dataIndex: 'id', key: 'id', fixed: 'left' },
-            { title: '车牌号', dataIndex: 'carId', key: 'carId' },
-            { title: '类型', dataIndex: 'type', key: 'type' },
-            { title: '状态', dataIndex: 'status', key: 'status' },
+        const columns = [{
+            title: 'id',
+            dataIndex: 'id',
+            key: 'id',
+        },
+            {title: '车牌号',
+                dataIndex: 'carId',
+                key: 'carId'},
+            {
+                title: '类型',
+                dataIndex: 'type',
+                key: 'type'
+            },
+            {title: '状态',
+                dataIndex: 'status',
+                key: 'status'},
             {
                 title: '操作',
-                key: 'operation',
-                dataIndex: 'operation',
-                fixed: 'right',
-                width: 200,
-                render: (e) => (
-                    <span>
-                        <a href="javascript:;">{e}</a>
-                    </span>
-                ),
-            },
-        ];
+                key: 'action',
+                render: (e) => {
+                    const {id, operation} = e
+                    return <span>
+                     <a href="javascript:;" onClick={()=>this.getAllAvailableBoys(id)}>{operation}</a>
+                </span>
+                },
+            }];
 
         const data = this.props.ordersList;
         // const Search = Input.Search;
@@ -74,6 +124,18 @@ class orderManagement extends Component {
                     </Col>
                 </Row>
                 <Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
+                <div>
+                    <Modal
+                        title="Basic Modal"
+                        visible={this.state.visible}
+                        onOk={this.handleOk}
+                        onCancel={this.handleCancel}
+                    >
+                        <RadioGroup onChange={this.onChange} value={this.state.value}>
+                            {this.state.radios}
+                        </RadioGroup>
+                    </Modal>
+                </div>
             </div>
         );
     }

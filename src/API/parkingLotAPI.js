@@ -218,5 +218,19 @@ export default {
     .catch((error) => {
         console.log(error);
     }),
-
+    "getAllAvailableBoys":(success,id) =>axios.get(requestUrls.employees + "/AvailableParkingBoys" )
+        .then(res => {
+            success(res.data,id);
+        })
+        .catch(error => {
+            console.log(error);
+        }),
+    "postOrderToParkingBoy":(id,boyId,dispatch)=>
+        axios.patch(requestUrls.orders + "/" + id+"?"+"boyId="+boyId)
+            .then(res => {
+                dispatch(actions.updateOrderItem(res.data))
+            })
+            .catch(error => {
+                console.log(error);
+            }),
 }

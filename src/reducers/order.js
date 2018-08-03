@@ -13,6 +13,16 @@ export default (state=[], action) => {
             let newState = [...action.ordersList]
             return newState
         }
+        case types.UPDATEITEM:{
+            let newState = [...state]
+            return newState.map(i=>{
+                if(i.id === action.OrderItem.id){
+                    return action.OrderItem
+                } else {
+                    return i
+                }
+            })
+        }
         default:
             return state
     }

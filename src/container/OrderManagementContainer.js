@@ -16,7 +16,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         },
         onSearchOrders:(searchValue)=>{
             Api.searchOrders(dispatch,searchValue)
-        }
+        },
+        onPostOrderToParkingBoy:(id,boyid)=>{
+            Api.postOrderToParkingBoy(id,boyid,dispatch);
+        },
+        onGetAvailableBoys :(success,id)=>{
+            return Api.getAllAvailableBoys(success,id)
+        },
     }
 }
 
