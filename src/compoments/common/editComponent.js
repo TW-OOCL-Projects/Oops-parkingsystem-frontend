@@ -59,7 +59,7 @@ class Edit extends Component {
                                         }],
                                         initialValue: this.props.dataFormat[i]
                                     })(
-                                        <Input disabled={i === "id" ? true : false} />
+                                        <Input disabled={i === "id"||i==="username" ? true : false} />
 
                                     )}
 
@@ -73,7 +73,7 @@ class Edit extends Component {
                             label="role"
                             hasFeedback
                         >
-                            <Select defaultValue={this.props.dataFormat["role"]} onChange={this.setRole}>
+                            <Select disabled={this.props.dataFormat["role"]==="admin"?true:false} defaultValue={this.props.dataFormat["role"]} onChange={this.setRole}>
                                 <Option value="manager">manage</Option>
                                 <Option value="parkingboy">parkingboy</Option>
                             </Select>

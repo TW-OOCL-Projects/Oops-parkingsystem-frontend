@@ -64,10 +64,10 @@ class employeeMangment extends Component {
             title: '操作',
             key: 'action',
             render: (e) => {
-                const { id, email, name, password, phone, username } = e
+                const { id, email, name, phone, username } = e
                 return <span >
                     <a href="javascript:;" onClick={
-                        () => this.showEditForm(true, { id, email, name, password, phone, username,role:e.role.role }, false)
+                        () => this.showEditForm(true, { id, email, name, phone, username,role:e.role.role }, false)
                     }>修改</a>
                     {id !== 1 &&
                         <span>
