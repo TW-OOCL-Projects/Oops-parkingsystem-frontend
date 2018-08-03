@@ -13,6 +13,18 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onGetAllEmployees: () => {
             Api.getAllEmployees(dispatch)
         },
+        onAddEmployee: (postData) => {
+            Api.addEmployee(dispatch,postData)
+        },
+        onChangeAccountSataus: (id) => {
+            Api.frozenAccount(dispatch,id)
+        },
+        onUpdateEmployee: (employee) => {
+            Api.updateEmployee(dispatch,employee)
+        },
+        onSearchEmployees: (searchValue) => {
+            Api.searchEmployees(dispatch,searchValue)
+        },
     }
 }
 

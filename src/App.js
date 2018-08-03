@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Home from "./compoments/home"
 import Login from "./compoments/LoginForm"
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 class App extends Component {
   constructor(props) {
     super(props)
@@ -16,9 +16,12 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{height:"100%"}}>
-         <Route path="/home" component={Home} />
-      <Route path="/login" component={Login} />
+      <div style={{ height: "100%" }}>
+        <Route path="/home" component={Home} />
+        <Route  path="/login" component={Login} />
+        {
+          !localStorage.getItem("access_token") && < Redirect to="/login" />
+        }
       </div>
     );
   }

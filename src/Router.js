@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import employeeMangementContainer from "./container/employeeMangementContainer";
-import ParkingLotMangement from "./compoments/parkingLot-management";
-import Dashboarsh from "./compoments/dashboarsh";
-import OrderManagement from "./compoments/order-management"
-import ParkingBoy from "./compoments/parking-boy"
-import {Route } from "react-router-dom";
+import Dashboarsh from "./container/dashboarshContainer";
+import ParkingBoy from "./container/parkingBoyContainer"
+import { Route,Redirect } from "react-router-dom";
+import Welcome from "./compoments/welcome"
+import parkingLotManagementContainer from './container/parkingLotManagementContainer';
+import OrderManagementContainer from './container/OrderManagementContainer';
 class Router extends Component {
     constructor(props) {
         super(props);
@@ -14,13 +15,13 @@ class Router extends Component {
     render() {
         return (
             <div>
-                {/* <Route exact path="/login" component={LoginForm} /> */}
-                {/* <Route  path="/home" component={HomePage} /> */}
-                <Route exact path="/home/employeeMangment" component={employeeMangementContainer} />
-                <Route  path="/home/parkingLotMangement" component={ParkingLotMangement} />
-                <Route  path="/home/dashboarsh" component={Dashboarsh} />
-                <Route  path="/home/orderManagement" component={OrderManagement} />
-                <Route  path="/home/parkingBoy" component={ParkingBoy} />
+                <Route path="/home/welcome"  component={Welcome} />
+                <Route path="/home/employeeMangment" component={employeeMangementContainer} />
+                <Route path="/home/parkingLotMangement" component={parkingLotManagementContainer} />
+                <Route path="/home/dashboarsh" component={Dashboarsh} />
+                <Route path="/home/orderManagement" component={OrderManagementContainer} />
+                <Route path="/home/parkingBoy" component={ParkingBoy} />
+                <Redirect  to="/home/welcome" />
             </div>
         );
     }
