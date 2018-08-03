@@ -92,11 +92,11 @@ class ParkingLotMangement extends Component {
                     <Col span={6}></Col>
                     <Col span={6} align="right">
                         <InputGroup compact>
-                            <Select defaultValue="id" style={{ width: "100px" }} onChange={(e) => this.setSearchType(e)}>
-                                <Option value="name">lot name</Option>
-                                <Option value="tel">boy tel</Option>
-                                <Option value="sizeBt">big than</Option>
-                                <Option value="sizeSt">small than</Option>
+                            <Select defaultValue="name" style={{ width: "100px" }} onChange={(e) => this.setSearchType(e)}>
+                                <Option value="name">名称</Option>
+                                <Option value="tel">电话号码</Option>
+                                <Option value="sizeBt">容量大于</Option>
+                                <Option value="sizeSt">容量小于</Option>
                             </Select>
                         </InputGroup>
                     </Col>

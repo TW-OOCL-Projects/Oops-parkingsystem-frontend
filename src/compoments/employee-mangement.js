@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Divider, Table, Button, Input, Select } from 'antd'
+import { Divider, Table, Button, Input, Select, Row, Col } from 'antd'
 import Edit from "./common/editComponent"
 const InputGroup = Input.Group;
 const Option = Select.Option;
@@ -85,23 +85,28 @@ class employeeMangment extends Component {
 
         return (
             <div>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
+                <Row type="flex" justify="space-around" align="middle">
+                    <Col span={6}>
                     <Button type="primary" onClick={() => this.showEditForm(true, {
                         "name": "",
                         "username": "",
                         "email": "",
                         "phone": ""
                     }, true)}>新增</Button>
-                    <div style={{ display: "flex" }}>
+                    </Col>
+                    <Col span={6}></Col>
+                    <Col span={6} align="right">
                         <InputGroup compact>
-                            <Select defaultValue="id" style={{ width: "100px" }} onChange={this.setSeachType}>
-                                <Option value="id">id</Option>
-                                <Option value="name">姓名</Option>
-                                <Option value="email">email</Option>
-                                <Option value="phone">电话号码</Option>
+                            <Select defaultValue="name" style={{ width: "100px" }} onChange={(e) => this.setSearchType(e)}>
+                                <Option value="name">名称</Option>
+                                <Option value="tel">电话号码</Option>
+                                <Option value="sizeBt">容量大于</Option>
+                                <Option value="sizeSt">容量小于</Option>
                             </Select>
                         </InputGroup>
-                        <Search
+                    </Col>
+                    <Col span={6}>
+                    <Search
                             style={{ width: 400 }}
                             placeholder="请输入搜索内容"
                             onSearch={value => this.props.onSearchEmployees({
@@ -110,8 +115,8 @@ class employeeMangment extends Component {
                             })}
                             enterButton="搜索"
                         />
-                    </div>
-                </div>
+                    </Col>
+                </Row>
                 {data&&<Table bordered columns={columns} dataSource={data} scroll={{ x: 1300 }} />}
                 {this.state.isShowEditForm && <Edit dataFormat={this.state.dataFormat} showEditForm={(e) => this.showEditForm(e)} submitForm={(e) => this.submitForm(e)} />}
             </div>

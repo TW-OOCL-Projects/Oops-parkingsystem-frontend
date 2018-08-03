@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Divider, Table, Button, Input, Select, Transfer } from 'antd'
+import { Divider, Table, Button, Input, Select, Transfer , Col, Row} from 'antd'
 import Edit from "./common/editComponent"
 const InputGroup = Input.Group;
 const Option = Select.Option;
@@ -115,23 +115,28 @@ class parkingBoy extends Component {
 
         return (
             <div>
-                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
-                    <div style={{ display: "flex" }}>
-                        <InputGroup compact>
-                            <Select defaultValue="id" style={{ width: 120 }}>
+                <Row type="flex" justify="space-around" align="middle">
+                    <Col span={6}></Col>
+                    <Col span={6}></Col>
+                    <Col span={6} align="right">
+                    <InputGroup compact>
+                            <Select defaultValue="id" style={{ width: "100px" }}>
                                 <Option value="option1">id</Option>
                                 <Option value="Option2">姓名</Option>
                                 <Option value="Option3">电话号码</Option>
                             </Select>
                         </InputGroup>
+                    </Col>
+                    <Col span={6}>
                         <Search
-                            style={{ width: 400 }}
                             placeholder="请输入搜索内容"
-                            onSearch={value => console.log(value)}
                             enterButton="搜索"
+                            // size="large"
+                            onSearch={value => console.log(value)}
+                            style={{ width: 400 }}
                         />
-                    </div>
-                </div>
+                    </Col>
+                </Row>
                 <Table columns={columns} 
                     bordered
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
