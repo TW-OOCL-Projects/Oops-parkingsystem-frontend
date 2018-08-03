@@ -7,19 +7,37 @@ class Edit extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            role:this.props.dataFormat["role"] ? this.props.dataFormat["role"] :"parkingboy"
         }
     }
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                values.role = this.state.role
                 this.props.submitForm(values)
                 this.props.showEditForm(false)
             }
         });
     }
-
+    setRole=(e)=>{
+        this.setState({
+            role :e
+        })
+        console.log(e)
+    }
     render() {
+        const formItemLayout = {
+            labelCol: {
+              xs: { span: 24 },
+              sm: { span: 5 },
+            },
+            wrapperCol: {
+              xs: { span: 24 },
+              sm: { span: 12 },
+            },
+          };
+          
         const { getFieldDecorator } = this.props.form;
         return (
             <div className="edit">
@@ -28,7 +46,8 @@ class Edit extends Component {
                     <Form onSubmit={this.handleSubmit}>
                         {
                             Object.keys(this.props.dataFormat).map((i, index) => {
-                                return <FormItem
+                                if(i!=="role"){
+                                    return <FormItem
                                     label={i}
                                     labelCol={{ span: 5 }}
                                     wrapperCol={{ span: 12 }}
@@ -44,32 +63,21 @@ class Edit extends Component {
 
                                     )}
 
-
                                 </FormItem>
+                                }
+
                             })
                         }
-                        <FormItem
-                            label="选择权限"
-                            abelCol={{ span: 5 }}
-                            wrapperCol={{ span: 12 }}
-                            >
-                            {getFieldDecorator(`role`, {
-                                rules: [{
-                                    required: true, message: `Please input your !`
-                                }],
-                                initialValue: 2
-                            })(
-                                <Select
-                                    style={{ width: '32%' }}
-                                // onChange={this.handleCurrencyChange}
-                                >
-                                    <Option value="rmb">RMB</Option>
-                                    <Option value="dollar">Dollar</Option>
-                                </Select>
-
-                            )}
-
-                        </FormItem>
+                        {this.props.dataFormat["role"] && <FormItem
+                            {...formItemLayout}
+                            label="role"
+                            hasFeedback
+                        >
+                            <Select defaultValue={this.props.dataFormat["role"]} onChange={this.setRole}>
+                                <Option value="manager">manage</Option>
+                                <Option value="parkingboy">parkingboy</Option>
+                            </Select>
+                        </FormItem>}
                         <FormItem
                             wrapperCol={{ span: 12, offset: 5 }}
                         >

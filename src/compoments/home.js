@@ -49,7 +49,7 @@ class Home extends Component {
     return (
       <Layout className="layout">
 
-        {userInfo && userInfo.role && userInfo.role.role && <Tabbars collapsed={this.state.collapsed} role={userInfo.role.role} />}
+        {userInfo && userInfo.role && userInfo.role.role && userInfo.role.role!=="parkingboy" && <Tabbars collapsed={this.state.collapsed} role={userInfo.role.role} />}
 
         <Layout style={{ Width: "100%" }}>
           <Header style={{ background: '#fff', padding: 0 }} className="Header">

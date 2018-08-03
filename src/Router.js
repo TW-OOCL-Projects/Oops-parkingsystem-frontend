@@ -15,7 +15,7 @@ class Router extends Component {
     render() {
         return (
             <div>
-                <Route path="/home/welcome" component={Welcome} />
+                <Route path="/home/welcome"  component={Welcome} />
                 <Route path="/home/employeeMangment" component={employeeMangementContainer} />
                 <Route path="/home/parkingLotMangement" component={parkingLotManagementContainer} />
                 <Route path="/home/dashboarsh" component={Dashboarsh} />

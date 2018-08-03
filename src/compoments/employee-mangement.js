@@ -66,7 +66,7 @@ class employeeMangment extends Component {
                 const { id, email, name, password, phone, username } = e
                 return <span >
                     <a href="javascript:;" onClick={
-                        () => this.showEditForm(true, { id, email, name, password, phone, username }, false)
+                        () => this.showEditForm(true, { id, email, name, password, phone, username,role:e.role.role }, false)
                     }>修改</a>
                     {id !== 1 &&
                         <span>
