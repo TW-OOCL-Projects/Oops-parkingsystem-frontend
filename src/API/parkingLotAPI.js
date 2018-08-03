@@ -40,10 +40,11 @@ export default {
             console.log(error)
         }),
 
-    "changeParkingLotStatus": (id, dispatch) =>
+    "changeParkingLotStatus": (id, status, dispatch) =>
         axios.patch(`${requestUrls.parkingLots}/${id}`)
             .then(res => {
                 if (res.status == 204) {
+                    message.success(`停车场${status==="open"?"注销":"开放"}成功`);
                     // getAllParkingLots(dispatch);
                     axios.get(requestUrls.parkingLots)
                         .then((res) => {

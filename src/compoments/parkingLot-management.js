@@ -70,7 +70,7 @@ class ParkingLotMangement extends Component {
                         <a href="javascript:;"
                             onClick={() => {
                                 console.log(parkinglot.id);
-                                this.props.changeStatus(parkinglot.id)
+                                this.props.changeStatus(parkinglot.id, parkinglot.status)
                             }}>
                             {parkinglot.status === "open" ? "注销" : "开放"}
                         </a>
