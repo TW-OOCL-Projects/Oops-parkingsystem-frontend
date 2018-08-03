@@ -33,7 +33,7 @@ class parkingBoy extends Component {
         // console.log('moveKeys: ', moveKeys);
         if(direction === "right"){
             this.props.onAssignParkinglot(id, moveKeys);
-            this.props.onGetAllParkingboys();
+            this.props.onGetAllParnpmkingboys();
             this.props.onGetAllParkinglots();
         }else{
 
