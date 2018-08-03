@@ -1,6 +1,8 @@
 import axios from "axios"
 import * as actions from '../actions'
 import requestUrls from "./requestUrls"
+import {message} from 'antd'
+
 axios.defaults.headers.common['authorization'] = localStorage.getItem("access_token");
 export default {
     "getAllEmployees": (dispatch) =>{
@@ -65,25 +67,34 @@ export default {
             .catch((error) => {
                 console.log(error);
             }),
-    "addParkinglot": (dispatch, postData) =>
-        axios.post(requestUrls.parkingLots, postData)
-            .then(res => {
-                // console.log(res.data);
-                dispatch(actions.addParkinglot(res.data));
-            })
-            .catch(error => {
-                console.log(error);
-            }),
+    "addParkinglot": (dispatch, postData) =>{
+        const {name, size} = postData;
+        if(size.match(/\D/)==null){
+            message.success("停车场")
+            axios.post(requestUrls.parkingLots, postData)
+                .then(res => {
+                    // console.log(res.data);
+                    dispatch(actions.addParkinglot(res.data));
+                    message.success("停车场添加成功")
+                })
+                .catch(error => {
+                    console.log(error);
+                    message.error("服务器出错，停车场添加失败")
+                })
+        }else{
+            message.error("停车场信息格式错误，停车场添加失败")
+        }
+    },
 
     "modifyParkinglot": (id, value, dispatch) =>
         axios.put(`${requestUrls.parkingLots}/${id}`, value)
             .then(res => {
-                // console.log("-------"+JSON.stringify(res.data));
                 dispatch(actions.modifyParkinglot(res.data))
-                // console.log("-----ok")
+                message.success("停车场修改成功")
             })
             .catch(error => {
-                //console.log(error)
+                message.error("停车场有车时不能修改大小")
+                console.log(error)
             }),
 
     "frozenAccount": (dispatch, id) => axios.patch(requestUrls.employees + "/" + id, {account_status: ""})
