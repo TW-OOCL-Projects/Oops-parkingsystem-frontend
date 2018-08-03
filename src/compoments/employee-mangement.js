@@ -18,7 +18,6 @@ class employeeMangment extends Component {
         this.props.onGetAllEmployees()
     }
     setSeachType = (e) => {
-        console.log(e)
         this.setState({
             searchType: e
         })
@@ -86,7 +85,7 @@ class employeeMangment extends Component {
 
         return (
             <div>
-                <Row type="flex" justify="space-around" align="middle">
+                <Row type="flex" justify="space-around" align="middle" style={{marginBottom:"2rem"}}>
                     <Col span={6}>
                     <Button type="primary" onClick={() => this.showEditForm(true, {
                         "name": "",
@@ -98,11 +97,11 @@ class employeeMangment extends Component {
                     <Col span={6}></Col>
                     <Col span={6} align="right">
                         <InputGroup compact>
-                            <Select defaultValue="name" style={{ width: "100px" }} onChange={(e) => this.setSearchType(e)}>
+                            <Select defaultValue="id" style={{ width: "100px" }} onChange={(e) => this.setSeachType(e)}>
+                                <Option value="id">id</Option>
                                 <Option value="name">名称</Option>
-                                <Option value="tel">电话号码</Option>
-                                <Option value="sizeBt">容量大于</Option>
-                                <Option value="sizeSt">容量小于</Option>
+                                <Option value="email">email</Option>
+                                <Option value="phone">电话号码</Option>
                             </Select>
                         </InputGroup>
                     </Col>

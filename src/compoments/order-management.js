@@ -47,7 +47,7 @@ class orderManagement extends Component {
 
         return (
             <div>
-                <Row type="flex" justify="space-around" align="middle" >
+                <Row type="flex" justify="space-around" align="middle" style={{marginBottom:"2rem"}}>
                     <Col span={6}></Col>
                     <Col span={6}></Col>
                     <Col span={6} align="right">

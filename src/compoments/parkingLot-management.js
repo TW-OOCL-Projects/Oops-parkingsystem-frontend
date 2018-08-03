@@ -86,7 +86,7 @@ class ParkingLotMangement extends Component {
         }
         return (
             <div>
-                <Row type="flex" justify="space-around" align="middle">
+                <Row type="flex" justify="space-around" align="middle" style={{marginBottom:"2rem"}}>
                     <Col span={6}>
                         <Button type="primary" onClick={() => this.showEditForm(true)}>新建</Button>
                     </Col>

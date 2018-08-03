@@ -7,7 +7,7 @@ class Edit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            role:this.props.dataFormat["role"] ? this.props.dataFormat["role"] :"parkingboy"
+            role: this.props.dataFormat["role"] ? this.props.dataFormat["role"] : "parkingboy"
         }
     }
     handleSubmit = (e) => {
@@ -20,24 +20,24 @@ class Edit extends Component {
             }
         });
     }
-    setRole=(e)=>{
+    setRole = (e) => {
         this.setState({
-            role :e
+            role: e
         })
         console.log(e)
     }
     render() {
         const formItemLayout = {
             labelCol: {
-              xs: { span: 24 },
-              sm: { span: 5 },
+                xs: { span: 24 },
+                sm: { span: 5 },
             },
             wrapperCol: {
-              xs: { span: 24 },
-              sm: { span: 12 },
+                xs: { span: 24 },
+                sm: { span: 12 },
             },
-          };
-          
+        };
+
         const { getFieldDecorator } = this.props.form;
         return (
             <div className="edit">
@@ -46,24 +46,24 @@ class Edit extends Component {
                     <Form onSubmit={this.handleSubmit}>
                         {
                             Object.keys(this.props.dataFormat).map((i, index) => {
-                                if(i!=="role"){
+                                if (i !== "role") {
                                     return <FormItem
-                                    label={i}
-                                    labelCol={{ span: 5 }}
-                                    wrapperCol={{ span: 12 }}
-                                    key={index}
-                                >
-                                    {getFieldDecorator(`${i}`, {
-                                        rules: [{
-                                            required: true, message: `Please input your ${i}!`
-                                        }],
-                                        initialValue: this.props.dataFormat[i]
-                                    })(
-                                        <Input disabled={i === "id"||i==="username" ? true : false} />
+                                        label={i}
+                                        labelCol={{ span: 5 }}
+                                        wrapperCol={{ span: 12 }}
+                                        key={index}
+                                    >
+                                        {getFieldDecorator(`${i}`, {
+                                            rules: [{
+                                                required: true, message: `Please input your ${i}!`
+                                            }],
+                                            initialValue: this.props.dataFormat[i]
+                                        })(
+                                            <Input disabled={i === "id" || (i === "username"&&this.props.dataFormat["username"]) || (this.props.dataFormat["role"] === "admin" && i==="name") ? true : false} />
 
-                                    )}
+                                        )}
 
-                                </FormItem>
+                                    </FormItem>
                                 }
 
                             })
@@ -73,7 +73,7 @@ class Edit extends Component {
                             label="role"
                             hasFeedback
                         >
-                            <Select disabled={this.props.dataFormat["role"]==="admin"?true:false} defaultValue={this.props.dataFormat["role"]} onChange={this.setRole}>
+                            <Select disabled={this.props.dataFormat["role"] === "admin" ? true : false} defaultValue={this.props.dataFormat["role"]} onChange={this.setRole}>
                                 <Option value="manager">manage</Option>
                                 <Option value="parkingboy">parkingboy</Option>
                             </Select>

@@ -1,7 +1,7 @@
 import axios from "axios"
 import * as actions from '../actions'
 import requestUrls from "./requestUrls"
-import {message,Modal} from 'antd'
+import {message} from 'antd'
 
 axios.defaults.headers.common['authorization'] = localStorage.getItem("access_token");
 export default {
