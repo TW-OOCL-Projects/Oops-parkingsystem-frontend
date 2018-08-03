@@ -1,7 +1,7 @@
 import axios from "axios"
 import * as actions from '../actions'
 import requestUrls from "./requestUrls"
-import {message} from 'antd'
+import {message,Modal} from 'antd'
 
 axios.defaults.headers.common['authorization'] = localStorage.getItem("access_token");
 export default {
@@ -43,7 +43,7 @@ export default {
     "changeParkingLotStatus": (id, status, dispatch) =>
         axios.patch(`${requestUrls.parkingLots}/${id}`)
             .then(res => {
-                if (res.status == 204) {
+                if (res.status === 204) {
                     message.success(`停车场${status==="open"?"注销":"开放"}成功`);
                     // getAllParkingLots(dispatch);
                     axios.get(requestUrls.parkingLots)
@@ -62,7 +62,6 @@ export default {
     "addEmployee": (dispatch, postData) =>
         axios.post(requestUrls.employees, postData)
             .then((res) => {
-                // console.log(res.data);
                 dispatch(actions.addEmployee(res.data))
             })
             .catch((error) => {
