@@ -12,13 +12,14 @@ class Tabbars extends Component {
             >
                 <div className="logo" />
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-                    <Menu.Item key="1">
-                        <Link to="/home/employeeMangment">
-                            <Icon type="user" />
-                            <span>员工管理</span>
-                        </Link>
-                    </Menu.Item>
-
+                    {this.props.role==="admin" &&
+                        <Menu.Item key="1">
+                            <Link to="/home/employeeMangment">
+                                <Icon type="user" />
+                                <span>员工管理</span>
+                            </Link>
+                        </Menu.Item>
+                    }
                     <Menu.Item key="2">
                         <Link to="/home/parkingLotMangement">
                             <Icon type="car" />

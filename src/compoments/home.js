@@ -3,14 +3,22 @@ import 'antd/dist/antd.css';
 import Router from "../Router";
 import Tabbars from "./tabbars";
 import { Avatar, Layout, Icon, Menu, Dropdown, message, Popconfirm } from 'antd';
+
 const { Header, Content, Footer } = Layout;
 class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
       collapsed: false,
+      userInfo: ""
     }
   }
+  componentWillMount() {
+    localStorage.getItem("userInfo")!="undefined" && this.setState({
+      userInfo:  JSON.parse(localStorage.getItem("userInfo")) 
+    })
+  }
+
   confirm = () => {
     const { history } = this.props
     localStorage.removeItem("access_token")
@@ -23,6 +31,7 @@ class Home extends Component {
     });
   }
   render() {
+    const userInfo = this.state.userInfo
     const onClick = function ({ key }) {
     };
     const menu = (
@@ -39,7 +48,8 @@ class Home extends Component {
     );
     return (
       <Layout className="layout">
-        <Tabbars collapsed={this.state.collapsed} />
+
+        {userInfo && userInfo.role && userInfo.role.role && <Tabbars collapsed={this.state.collapsed} role={userInfo.role.role} />}
 
         <Layout style={{ Width: "100%" }}>
           <Header style={{ background: '#fff', padding: 0 }} className="Header">
@@ -48,9 +58,14 @@ class Home extends Component {
               type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
               onClick={this.toggle}
             />
-            <Dropdown overlay={menu} className="Dropdown">
-              <Avatar size="large" icon="user" />
-            </Dropdown>
+            <div>
+              <Dropdown overlay={menu} className="Dropdown">
+                <Avatar size="large" icon="user" style={{ color: "#1890ff" }} />
+              </Dropdown>
+              {userInfo && userInfo.name &&
+                <span style={{ paddingRight: "30px", color: "#1890ff", fontSize: "1.2rem" }}>{userInfo.name}</span>
+              }
+            </div>
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280, minWidth: "100%" }}>
             <Router />

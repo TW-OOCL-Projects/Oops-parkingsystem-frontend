@@ -103,7 +103,7 @@ class employeeMangment extends Component {
                         </InputGroup>
                         <Search
                             style={{ width: 400 }}
-                            placeholder="示例文字"
+                            placeholder="请输入搜索内容"
                             onSearch={value => this.props.onSearchEmployees({
                                 searchType: this.state.searchType,
                                 searchValue: value

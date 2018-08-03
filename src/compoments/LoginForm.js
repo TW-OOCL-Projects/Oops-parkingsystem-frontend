@@ -1,41 +1,53 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox,Row ,Col,message} from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Row, Col, message } from 'antd';
 import '../css/LoginForm.css'
 import axios from "axios"
 import requestUrls from "../API/requestUrls"
 const FormItem = Form.Item;
 
-class NormalLoginForm extends Component{
-    handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.form.validateFields((err, values) => {
-          if (!err) {
-            let postData={"username":values.userName,"password":values.password}
-            axios.post(requestUrls.login,postData)//.employees
-                  .then((res) => {
-                    console.log(res)
-                    if(res.status===200){
-                        message.info('登录成功');
-                        localStorage.setItem("access_token", res.data.token);
-
-                        const {history}=this.props;
-                        history.push("/home/employeeMangment/"+res.data.id)
-                    } else {
-                        message.info('未知异常！');
-                    }
-                })
-                .catch((error) => {
-                  message.info('账号或密码错误！');
-                })
-          }
-        });
+class NormalLoginForm extends Component {
+  handleSubmit = (e) => {
+    e.preventDefault();
+    axios.defaults.headers.common['authorization'] = "";
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        let postData = { "username": values.userName, "password": values.password }
+        axios.post(requestUrls.login, postData)//.employees
+          .then((res) => {
+            console.log(res)
+            if (res.status === 200) {
+              message.info('登录成功');
+              localStorage.setItem("access_token", res.data.token);
+              axios.defaults.headers.common['authorization'] = res.data.token;
+              this.getUserInfo(res.data.id)
+            } else {
+              message.info('未知异常！');
+            }
+          })
+          .catch((error) => {
+            message.info('账号或密码错误！');
+          })
       }
-      render() {
-        const { getFieldDecorator } = this.props.form;
-        return (
-          <Row type="flex" justify="space-around" align="center">
-          <Col span={5}>
-          <Form onSubmit={(e)=>this.handleSubmit(e)} className="login-form">
+    });
+  }
+  getUserInfo = (id) => {
+
+    axios.get(requestUrls.employees + "/search?id=" + id)
+      .then((res) => {
+        localStorage.setItem("userInfo",JSON.stringify(res.data[0]));
+        const { history } = this.props;
+        history.push("/home/employeeMangment?")
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+  render() {
+    const { getFieldDecorator } = this.props.form;
+    return (
+      <Row type="flex" justify="space-around" align="center">
+        <Col span={5}>
+          <Form onSubmit={(e) => this.handleSubmit(e)} className="login-form">
             <h1>请先登录</h1>
             <FormItem>
               {getFieldDecorator('userName', {
@@ -63,10 +75,10 @@ class NormalLoginForm extends Component{
               </Button>
             </FormItem>
           </Form>
-          </Col>
-          </Row>
-        );
-      }
+        </Col>
+      </Row>
+    );
+  }
 }
 const LoginForm = Form.create()(NormalLoginForm);
 
