@@ -95,7 +95,7 @@ class ParkingLotMangement extends Component {
                         <InputGroup compact>
                             <Select defaultValue="name" style={{ width: "100px" }} onChange={(e) => this.setSearchType(e)}>
                                 <Option value="name">名称</Option>
-                                <Option value="tel">电话号码</Option>
+                                {/* <Option value="tel">电话号码</Option> */}
                                 <Option value="sizeBt">容量大于</Option>
                                 <Option value="sizeSt">容量小于</Option>
                             </Select>
