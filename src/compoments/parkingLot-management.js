@@ -14,11 +14,12 @@ class ParkingLotMangement extends Component {
             isShowModifyForm: false,
             dataFormat: {},
             modifyId: 0,
-            searchType: "",
+            searchType: "name",
         }
     }
 
     setSearchType = (e) => {
+        console.log(e)
         this.setState({
             searchType: e,
         })
@@ -105,7 +106,7 @@ class ParkingLotMangement extends Component {
                             placeholder="请输入搜索内容"
                             enterButton="搜索"
                             // size="large"
-                            onSearch={value => this.props.onSearch(value, this.state.searchType)}
+                            onSearch={value =>{this.props.onSearch(value, this.state.searchType)}}
                             style={{ width: 400 }}
                         />
                     </Col>
