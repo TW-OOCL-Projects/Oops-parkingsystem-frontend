@@ -12,6 +12,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onGetAllOrders:()=>{
             Api.getAllOrders(dispatch)
+
+        },
+        onSearchOrders:(searchValue)=>{
+            Api.searchOrders(dispatch,searchValue)
         }
     }
 }

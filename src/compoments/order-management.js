@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
-import { Table, Select,  Menu, Dropdown, message, Input, Row, Col } from 'antd'
+import { Table, Select, Input, Row, Col } from 'antd'
 
 const InputGroup = Input.Group;
 const Option = Select.Option;
+const Search = Input.Search;
 class orderManagement extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            searchType: "id"
         }
     }
-    componentWillMount(){
+    componentWillMount() {
         this.props.onGetAllOrders();
+    }
+
+    setSeachType = (e) => {
+        this.setState({
+            searchType: e
+        })
     }
 
     render() {
@@ -35,19 +43,7 @@ class orderManagement extends Component {
         ];
 
         const data = this.props.ordersList;
-
-        const menu = (
-            <Menu onClick={handleMenuClick}>
-                <Menu.Item key="1">1st menu item</Menu.Item>
-                <Menu.Item key="2">2nd menu item</Menu.Item>
-                <Menu.Item key="3">3rd item</Menu.Item>
-            </Menu>
-        );
-        function handleMenuClick(e) {
-            message.info('Click on menu item.');
-            console.log('click', e);
-        }
-        const Search = Input.Search;
+        // const Search = Input.Search;
 
         return (
             <div>
@@ -55,11 +51,12 @@ class orderManagement extends Component {
                     <Col span={6}></Col>
                     <Col span={6}></Col>
                     <Col span={6} align="right">
-                    <InputGroup compact>
-                            <Select defaultValue="id" style={{ width: "100px" }} onChange={(e) =>console.log(e)}>
-                                <Option value="name">姓名</Option>
-                                <Option value="email">email</Option>
-                                <Option value="tel">电话号码</Option>
+                        <InputGroup compact>
+                            <Select defaultValue="id" style={{ width: "100px" }} onChange={this.setSeachType}>
+                                <Option value="id">id</Option>
+                                <Option value="carId">车牌号</Option>
+                                <Option value="type">类型</Option>
+                                <option value="status">状态</option>
                             </Select>
                         </InputGroup>
                     </Col>
@@ -67,7 +64,11 @@ class orderManagement extends Component {
                         <Search
                             placeholder="示例文字"
                             enterButton="搜索"
-                            onSearch={value => console.log(value)}
+                            // onSearch={value => console.log(value)}
+                            onSearch={value => this.props.onSearchOrders({
+                                searchType: this.state.searchType,
+                                searchValue: value
+                            })}
                             style={{ width: 400 }}
                         />
                     </Col>

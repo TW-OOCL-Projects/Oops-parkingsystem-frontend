@@ -212,4 +212,12 @@ export default {
         });
     },
 
+    "searchOrders":(dispatch, searchValue) => axios.get(requestUrls.orders + "/search?" + searchValue.searchType + "=" + searchValue.searchValue + "")
+    .then((res) => {
+        dispatch(actions.searchOrders(res.data))
+    })
+    .catch((error) => {
+        console.log(error);
+    }),
+
 }

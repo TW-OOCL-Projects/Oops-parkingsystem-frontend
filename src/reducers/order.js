@@ -6,6 +6,13 @@ export default (state=[], action) => {
             newState = action.ordersList
             return newState;
         }
+        case types.SEARCHORDER:{
+            // let newState = [...state]
+            // newState = action.ordersList
+            // return newState;
+            let newState = [...action.ordersList]
+            return newState
+        }
         default:
             return state
     }

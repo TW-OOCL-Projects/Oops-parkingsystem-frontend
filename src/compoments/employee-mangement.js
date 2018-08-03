@@ -18,6 +18,7 @@ class employeeMangment extends Component {
         this.props.onGetAllEmployees()
     }
     setSeachType = (e) => {
+        console.log(e)
         this.setState({
             searchType: e
         })
