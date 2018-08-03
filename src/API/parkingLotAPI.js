@@ -71,7 +71,6 @@ export default {
     "addParkinglot": (dispatch, postData) =>{
         const {name, size} = postData;
         if(size.match(/\D/)==null){
-            message.success("停车场")
             axios.post(requestUrls.parkingLots, postData)
                 .then(res => {
                     // console.log(res.data);
@@ -80,7 +79,7 @@ export default {
                 })
                 .catch(error => {
                     console.log(error);
-                    message.error("服务器出错，停车场添加失败")
+                    message.error("停车场名重复，停车场添加失败")
                 })
         }else{
             message.error("停车场信息格式错误，停车场添加失败")
