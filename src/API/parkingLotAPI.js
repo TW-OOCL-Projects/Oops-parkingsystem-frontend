@@ -62,6 +62,7 @@ export default {
     "addEmployee": (dispatch, postData) =>
         axios.post(requestUrls.employees, postData)
             .then((res) => {
+                message.success(`员工新增成功，该员工的账号是：${res.data.username}，密码是：${res.data.password}`)
                 dispatch(actions.addEmployee(res.data))
             })
             .catch((error) => {

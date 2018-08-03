@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "../../css/edit.css"
-import { Form, Input, Button, Icon, Select } from 'antd';
+import { Form, Input, Button, Icon, Select, Modal } from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
 class Edit extends Component {
@@ -59,7 +59,7 @@ class Edit extends Component {
                                             }],
                                             initialValue: this.props.dataFormat[i]
                                         })(
-                                            <Input disabled={i === "id" || (i === "username"&&this.props.dataFormat["username"]) || (this.props.dataFormat["role"] === "admin" && i==="name") ? true : false} />
+                                            <Input disabled={i === "id" || (i === "username" && this.props.dataFormat["username"]) || (this.props.dataFormat["role"] === "admin" && i === "name") ? true : false} />
 
                                         )}
 
@@ -87,6 +87,16 @@ class Edit extends Component {
                         </FormItem>
                     </Form>
                 </div>
+                {/* <Modal title="提示"
+                    visible={true}
+                    // onOk={this.handleOk}
+                    // confirmLoading={confirmLoading}
+                    // onCancel={this.handleCancel}
+                >
+                    <p>员工新增成功，该员工的账号是：123，密码是：123
+
+                    </p>
+                </Modal> */}
             </div>
         );
     }
