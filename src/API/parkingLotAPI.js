@@ -166,7 +166,6 @@ export default {
 
         axios.get(`${requestUrls.employees}/id=${userId}`)
         .then(res=>{
-            message.success("hhhhh");
             dispatch(actions.updateEmployee(res.data))
         })
         .catch(error=>{

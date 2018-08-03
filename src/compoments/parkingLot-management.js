@@ -102,7 +102,7 @@ class ParkingLotMangement extends Component {
                     </Col>
                     <Col span={6}>
                         <Search
-                            placeholder="示例文字"
+                            placeholder="请输入搜索内容"
                             enterButton="搜索"
                             // size="large"
                             onSearch={value => this.props.onSearch(value, this.state.searchType)}

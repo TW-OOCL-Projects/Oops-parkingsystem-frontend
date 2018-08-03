@@ -51,15 +51,12 @@ class parkingBoy extends Component {
             lot.userId === e.id
         ).map(lot=>lot.key)
         return (
-            <Transfer
+            <Transfer  style={{display:"flex",justifyContent:"center"}}
                 dataSource={parkinglotData}//数据源，其中的数据会被渲染到左侧一栏
-                showSearch//显示搜索框
                 listStyle={{
                     width: 250,
                     height: 300,
                   }}
-                searchPlaceholder='请输入搜索内容'
-                titles={['可选停车场', '管理的停车场']}
                 filterOption={this.filterOption}
                 targetKeys={targetKeys}//显示在右侧框数据的key集合
                 onChange={(nextTargetKeys, direction, moveKeys)=>this.handleChange(nextTargetKeys, direction, moveKeys, e.id)}//选项在两栏之间转移时的回调函数
@@ -128,13 +125,13 @@ class parkingBoy extends Component {
                         </InputGroup>
                         <Search
                             style={{ width: 400 }}
-                            placeholder="示例文字"
+                            placeholder="请输入搜索内容"
                             onSearch={value => console.log(value)}
                             enterButton="搜索"
                         />
                     </div>
                 </div>
-                <Table columns={columns}
+                <Table columns={columns} 
                     bordered
                     // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
                     expandedRowRender={this.generateTransfer}
