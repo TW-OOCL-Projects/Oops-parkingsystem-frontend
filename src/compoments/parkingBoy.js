@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Divider, Table, Button, Input, Select, Transfer , Col, Row} from 'antd'
+import { Divider, Table, Button, Input, Select, Transfer , Col, Row,Tag} from 'antd'
 import Edit from "./common/editComponent"
+import * as types from '../constants/ActionTypes'
 const InputGroup = Input.Group;
 const Option = Select.Option;
 const Search = Input.Search;
@@ -10,20 +11,26 @@ class parkingBoy extends Component {
         this.state = {
             isShowEditForm: false,
             dataFormat: {},
+            parkinglots:[],
+            filterList:[],
+            searchType: "id",
+            tags:[],
+            parkingBoys:this.props.parkingboyList,
         }
     }
     componentWillMount() {
+        console.log(this.props.parkingboyList)
         this.props.onGetAllParkingboys();
         this.props.onGetAllParkinglots();
         this.setState({
             parkinglots: this.props.parkinglots,
+            parkingBoys:this.props.parkingboyList,
         })
         console.log(this.state.parkinglots)
     }
 
 
     filterOption = (inputValue, option) => {
-        // console.log("++++++++"+JSON.stringify(inputValue))
         return option.description.indexOf(inputValue) > -1;
     }
 
@@ -40,7 +47,7 @@ class parkingBoy extends Component {
     generateTransfer = (e) => {
         console.log(e)
         console.log(this.props.parkinglots)
-        const parkinglotData = this.props.parkinglots.filter( lot=>
+        const parkinglotData = this.props.parkinglots.filter(lot=>
             (lot.status === "open" && (lot.userId == null || lot.userId === e.id))
         ).map(lot=>{
             return {...lot,
@@ -74,6 +81,94 @@ class parkingBoy extends Component {
     submitForm = (value) => {
         this.props.onUpdateEmployee(value)
     }
+    setSeachType = (e) => {
+        this.setState({
+            searchType: e
+        })
+    }
+    onSearchBoys = (e) =>{
+        let temp = this.state.filterList.concat();
+        let flag = true;
+        for(let i =0 ;i<temp.length;i++){
+            if(temp[i].searchType === e.searchType)
+            {
+                temp[i].searchValue = e.searchValue;
+                flag = false;
+                break;
+            }
+        }
+        if(flag)
+        {
+            temp.push(e);
+        }
+        this.showTags(temp);
+    }
+    showTags = (list)=>{
+        let tags = [];
+        let parkingBoys = this.props.parkingboyList;
+        console.log(parkingBoys);
+        let type ;
+        let typeAndBoy;
+        console.log(list);
+        for(let i=0;i<list.length;i++){
+            typeAndBoy =this.findTypeAndBoys(list[i].searchType,list[i].searchValue,parkingBoys)
+            parkingBoys = typeAndBoy.parkingBoys;
+            type = typeAndBoy.type;
+            tags.push({"name":type,"searchITtem":list[i]});
+        }
+        console.log(tags)
+        this.setState({
+            filterList:list,tags,parkingBoys
+        })
+
+    }
+    deleteKeyWord = (e,key)=> {
+        console.log(this.state.filterList.concat())
+        console.log(key)
+        let filterList = this.state.filterList.filter(x=> !(x == key))
+        console.log(filterList);
+        let type;
+        let typeAndBoy;
+        let parkingBoys = this.props.parkingboyList;
+        let tags = [];
+        for (let i = 0; i < filterList.length; i++) {
+            typeAndBoy =this.findTypeAndBoys(filterList[i].searchType,filterList[i].searchValue,parkingBoys)
+            parkingBoys = typeAndBoy.parkingBoys;
+            type = typeAndBoy.type;
+            tags.push({"name":type,"searchITtem":filterList[i]});
+        }
+        this.setState({filterList,parkingBoys,tags})
+        setTimeout(()=>{
+            console.log(this.state)
+        },2000)
+
+    }
+
+    findTypeAndBoys = (searchType,searchValue,parkingBoys)=>{
+        console.log(parkingBoys)
+         let newparkingBoys =[];
+        let type;
+        if(searchType === "id")
+        {
+            type = types.id;
+            newparkingBoys = parkingBoys.filter(x=>x.id == searchValue);
+        }
+        else if(searchType === "name")
+        {
+            type = types.name;
+            newparkingBoys = parkingBoys.filter(x=>x.name === searchValue);
+        }
+        else  if(searchType === "phone"){
+            newparkingBoys = parkingBoys.filter(x=>x.phone === searchValue);
+            type = types.phone;
+        }
+
+        return {
+            "type":type,
+            "parkingBoys":newparkingBoys
+        }
+
+    }
     render() {
         const columns = [{
             title: 'id',
@@ -103,7 +198,6 @@ class parkingBoy extends Component {
                     }>修改</a>
                     <Divider type="vertical" />
                     <a href="javascript:;"
-                    // onClick={() => this.props.onChangeAccountSataus(id)}
                     >
                         {e.account_status === "normal" ? "冻结" : "开放"}</a>
                 </span>
@@ -116,32 +210,35 @@ class parkingBoy extends Component {
         return (
             <div>
                 <Row type="flex" justify="space-around" align="middle" style={{marginBottom:"2rem"}}>
-                    <Col span={6}></Col>
-                    <Col span={6}></Col>
-                    <Col span={6} align="right">
+                    <Col ></Col>
+                    <Col ></Col>
+                    <Col  align="right">
                     <InputGroup compact>
-                            <Select defaultValue="id" style={{ width: "100px" }}>
-                                <Option value="option1">id</Option>
-                                <Option value="Option2">姓名</Option>
-                                <Option value="Option3">电话号码</Option>
+                            <Select defaultValue="id" style={{ width: "100px" }} onChange={this.setSeachType}>
+                                <Option value="id">id</Option>
+                                <Option value="name">姓名</Option>
+                                <Option value="phone">电话号码</Option>
                             </Select>
                         </InputGroup>
                     </Col>
-                    <Col span={6}>
+                    <Col >
                         <Search
                             placeholder="请输入搜索内容"
                             enterButton="搜索"
                             // size="large"
-                            onSearch={value => console.log(value)}
+                            onSearch={value => this.onSearchBoys({
+                                searchType: this.state.searchType,
+                                searchValue: value
+                            })}
                             style={{ width: 400 }}
                         />
                     </Col>
+                    {this.state.tags.map(x => <Tag closable afterClose = {(e)=> this.deleteKeyWord(e,x.searchITtem)} key = {x.searchITtem.searchType}>{x.name}:{x.searchITtem.searchValue}</Tag>)}
                 </Row>
                 <Table columns={columns} 
                     bordered
-                    // expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
                     expandedRowRender={this.generateTransfer}
-                    dataSource={data} scroll={{ x: 1300 }} />
+                    dataSource={this.state.parkingBoys} scroll={{ x: 1300 }} />
                 {this.state.isShowEditForm && <Edit dataFormat={this.state.dataFormat} showEditForm={(e) => this.showEditForm(e)} submitForm={(e) => this.submitForm(e)} />}
             </div>
         );

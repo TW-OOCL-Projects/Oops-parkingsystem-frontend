@@ -2,8 +2,9 @@ import * as types from '../constants/ActionTypes'
 export default (state=[], action) => {
     switch (action.type) {
        case types.EMPLOYEELIST:{
-            let newState = [...state]
-            newState = action.employeesList
+            let newState = [...action.employeesList]
+            // newState = action.employeesList
+           console.log(newState)
             return newState;
         }
         case types.ADDEMPLOYEE:{
