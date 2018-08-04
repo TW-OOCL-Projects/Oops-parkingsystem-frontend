@@ -16,10 +16,10 @@ class Dashboarsh extends Component {
         console.log(items)
         return (
             <div >
-             <Row type="flex" justify="space-around">
+             <Row type="flex" >
                  {items.map(item=>{
                     //  return <li>{item.id}{item.name}{item.size}{item.countOfCars}</li>
-                    return <Col xs={24} sm={10} md={7} lg={7} xl={5} style={{marginBottom:"15px"}}>   
+                    return <Col xs={24} sm={10} md={7} lg={7} xl={5} style={{margin:"0 3rem 2rem 0"}}>   
                             {/* <div style={{width:"350px"}}> */}
                             <div>
                                 <Collapse defaultActiveKey={['1']} >
